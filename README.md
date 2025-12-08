@@ -35,3 +35,4 @@ Static portfolio site for data science/statistics. Pure HTML plus Tailwind CDN, 
 ## Notes
 - Fully static site; no build step required. To serve locally: `python -m http.server 8000` then open `http://localhost:8000`.
 - On Windows, Git may report LF→CRLF conversion during staging; this is expected if `core.autocrlf` is enabled.
+\nNote: Tnak you VibeCoding to make this porfolio possible
