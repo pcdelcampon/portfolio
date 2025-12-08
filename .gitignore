@@ -1,0 +1,22 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Node/logs (por si se añaden en el futuro)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Builds temporales
+dist/
+build/
+
+# Editor
+.vscode/
+.idea/
+
+# Python/R (si usas scripts auxiliares)
+__pycache__/
+.Rhistory
+.Rproj.user/

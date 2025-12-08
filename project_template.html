@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Proyecto - Portfolio</title>
+
+    <!-- Design Resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Compact Navigation -->
+    <nav class="fixed w-full z-50 glass-panel h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 w-full flex justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="font-bold font-mono">Volver al Portafolio</span>
+            </a>
+            <span class="text-brand-500 font-mono text-sm hidden md:block">
+                pcdcn/projects/detail
+            </span>
+        </div>
+    </nav>
+
+    <!-- Content Container -->
+    <main class="pt-20 pb-12 min-h-screen px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div class="space-y-6">
+                <div class="text-sm font-mono text-brand-500">project_detail.md</div>
+                <h1 class="text-3xl md:text-4xl font-bold text-white" id="project-title">Título del Análisis</h1>
+                <p class="text-slate-300 text-lg leading-relaxed" id="project-desc">
+                    Descripción corta del contexto del proyecto. Aquí explicamos brevemente qué metodologías se usaron
+                    antes de mostrar el reporte completo.
+                </p>
+                <div class="flex flex-wrap gap-2" id="project-tags">
+                    <span class="text-xs font-mono bg-slate-800 px-3 py-1.5 rounded text-blue-400">R Stats</span>
+                    <span class="text-xs font-mono bg-slate-800 px-3 py-1.5 rounded text-purple-400">Shiny</span>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a id="project-repo" href="#" target="_blank"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-brand-500 hover:text-brand-400 transition-colors">
+                        <i class="fa-brands fa-github"></i> View on GitHub
+                    </a>
+                    <a href="index.html"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-slate-400 transition-colors">
+                        <i class="fa-solid fa-arrow-left"></i> Back to portfolio
+                    </a>
+                </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900">
+                <img id="project-image" src="https://via.placeholder.com/1200x800" alt="Project visual"
+                    class="w-full h-full object-cover max-h-[32rem]">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Leer parámetros de la URL para título, descripción, imagen, repo y tags
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        const desc = urlParams.get('desc');
+        const img = urlParams.get('img');
+        const repo = urlParams.get('repo');
+        const tags = urlParams.get('tags');
+
+        if (title) document.getElementById('project-title').innerText = title;
+        if (desc) document.getElementById('project-desc').innerText = desc;
+
+        if (img) {
+            const imgEl = document.getElementById('project-image');
+            imgEl.src = img;
+        }
+
+        const repoLink = document.getElementById('project-repo');
+        if (repo) {
+            repoLink.href = repo;
+        } else {
+            repoLink.style.display = 'none';
+        }
+
+        if (tags) {
+            const tagContainer = document.getElementById('project-tags');
+            tagContainer.innerHTML = '';
+            tags.split(',').map(t => t.trim()).filter(Boolean).forEach(t => {
+                const span = document.createElement('span');
+                span.className = 'text-xs font-mono bg-slate-800 px-3 py-1.5 rounded text-blue-300';
+                span.textContent = t;
+                tagContainer.appendChild(span);
+            });
+        }
+    </script>
+</body>
+
+</html>

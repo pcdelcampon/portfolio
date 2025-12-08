@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Data Scientist</title>
+
+    <!-- Design Resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Math & Viz Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Sky blue inspired
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a', // Slate 900
+                            card: '#1e293b', // Slate 800
+                            text: '#f8fafc', // Slate 50
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #ffffff, #0ea5e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold font-mono tracking-tighter">
+                        &lt;PedroC/<span class="text-brand-500">S&amp;DS</span>&gt;
+                    </span>
+                </div>
+                <button id="nav-toggle" class="md:hidden text-slate-200 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div id="nav-menu" class="hidden md:flex items-center gap-8">
+                    <div class="flex flex-col md:flex-row md:items-baseline md:space-x-8 gap-2 md:gap-0">
+                        <a href="#hero"
+                            class="hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                            data-i18n="nav_home">Inicio</a>
+                        <a href="#about"
+                            class="hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                            data-i18n="nav_about">Sobre Mí</a>
+                        <a href="#projects"
+                            class="hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                            data-i18n="nav_projects">Portafolio</a>
+                        <a href="#viz-lab"
+                            class="hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                            data-i18n="nav_viz">Viz Lab</a>
+                        <a href="#contact"
+                            class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105"
+                            data-i18n="nav_contact">Contacto</a>
+                    </div>
+                    <!-- Language Switcher -->
+                    <div class="flex items-center gap-4 text-sm md:border-l md:border-slate-600 md:pl-6">
+                        <img id="btn-es" src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
+                            class="w-6 h-6 cursor-pointer transition-all hover:scale-110 opacity-40 grayscale hover:grayscale-0 hover:opacity-100">
+                        <img id="btn-en" src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
+                            class="w-6 h-6 cursor-pointer transition-all hover:scale-110 opacity-40 grayscale hover:grayscale-0 hover:opacity-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
+    <canvas id="hero-canvas"></canvas>
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full relative z-10 grid md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-7 space-y-6">
+            <div class="text-brand-500 font-mono text-sm tracking-widest uppercase" data-i18n="hero_greeting">HELLO, I'M PEDRO</div>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
+                <span class="gradient-text block" data-i18n="hero_title_1">Statistician & Data Scientist</span>
+            </h1>
+            <p class="max-w-2xl text-lg md:text-xl text-slate-300" data-i18n="hero_subtitle">
+                Data Worker who transforms complex data into clear, actionable insights through visualization, modeling, and
+                evidence-based storytelling. I am passionate about using data to understand people, systems, and real-world
+                challenges. My goal is to make insights accessible, meaningful, and useful for better decision-making.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#projects"
+                    class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all"
+                    data-i18n="btn_case_studies">View projects</a>
+                <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank"
+                    class="inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold gap-2 hover:bg-cyan-300/10 transition-all"
+                    data-i18n="btn_linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="#contact"
+                    class="inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold hover:bg-cyan-300/10 transition-all"
+                    data-i18n="btn_talk">Contact me</a>
+            </div>
+        </div>
+    </div>
+    <div class="absolute inset-x-0 bottom-10 flex justify-center">
+        <i class="fa-solid fa-chevron-down text-slate-500 text-xl"></i>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                        <span class="text-brand-500 font-mono text-2xl">01.</span> <span data-i18n="about_title">Sobre
+                            Mí</span>
+                    </h2>
+                    <div class="prose prose-invert text-slate-300">
+                        <p class="mb-4" data-i18n="about_p1">
+                            Statistician and Data Scientist with 12+ years of experience leveraging large datasets to
+                            generate clear, actionable insights that support strategic decision-making.
+                        </p>
+                        <p class="mb-6" data-i18n="about_p2">
+                            Strong expertise in statistical sampling, multivariate analysis, machine learning, predictive
+                            modeling, big data, and data visualization, with advanced command of modern analytical tools and
+                            the adaptability to work effectively across industries and analytical environments.
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4" data-i18n="about_stack">Skills</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
+                        <div>
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Languages</div>
+                            <ul class="space-y-1 font-mono text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-brands fa-python text-yellow-400"></i> <span data-i18n="skill_langs">Python, R, SQL, C, C++</span></li>
+                            </ul>
+                            <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">ML / Modeling</div>
+                            <ul class="space-y-1 font-mono text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-brain text-purple-400"></i> <span data-i18n="skill_ml">Predictive Modeling, Machine Learning, Generative AI</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-diagram-project text-blue-300"></i> <span data-i18n="skill_multivariate">Multivariate Statistical Methods</span></li>
+                            </ul>
+                            <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">Business & Metrics</div>
+                            <ul class="space-y-1 font-mono text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-clipboard-check text-teal-300"></i> <span data-i18n="skill_biz_interp">Business Problem Interpretation, Metric Design</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-vials text-amber-300"></i> <span data-i18n="skill_survey_impact">Survey Design, Program Impact Evaluation</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-slate-200 mb-2">Data & Ops</div>
+                            <ul class="space-y-1 font-mono text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-gears text-cyan-300"></i> <span data-i18n="skill_data_ops">Data Pipelines, Automated Reporting</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-brands fa-docker text-blue-500"></i> <span data-i18n="skill_cloud">Azure, AWS, Docker</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-database text-green-400"></i> <span data-i18n="skill_spss">SPSS, SAS, Stata</span></li>
+                            </ul>
+                            <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">Visualization & Geo</div>
+                            <ul class="space-y-1 font-mono text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-orange-400"></i> <span data-i18n="skill_story_viz">Analytical Storytelling, Data Visualization</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-pink-300"></i> <span data-i18n="skill_bi">Power BI, Google Data Studio</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-location-crosshairs text-emerald-300"></i> <span data-i18n="skill_geo">QGIS, ArcGIS</span></li>
+                            </ul>
+                            <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">Tools</div>
+                            <ul class="space-y-1 font-mono text-sm text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-terminal text-slate-200"></i> <span data-i18n="skill_tools_ide">VSCode, Positron, Colab, JupyterLab</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-file-lines text-slate-300"></i> <span data-i18n="skill_tools_office">Microsoft Office, OpenOffice</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
+                <span class="text-brand-500 font-mono text-2xl">02.</span> <span data-i18n="projects_title">Portfolio</span>
+            </h2>
+            <div class="relative">
+                <div class="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
+                    <div class="flex gap-6 min-w-full">
+                        <!-- Project Card 1 -->
+                        <div
+                            class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition duration-300 flex-shrink-0">
+                            <div class="h-44 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
+                                <i class="fa-solid fa-chart-area text-5xl text-slate-600 group-hover:text-brand-500 transition-colors"></i>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white" data-i18n="proj_1_title">Churn Prediction Engine</h3>
+                                    <a href="#" class="text-slate-400 hover:text-white text-lg"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                                <p class="text-slate-300 text-sm" data-i18n="proj_1_desc">Reducción del 15% en tasa de abandono mediante análisis de supervivencia y Random Forest optimizado.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-brand-200">
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">Python</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">Sklearn</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">XGBoost</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs hover:bg-gray-200 transition">View detail</a>
+                                    <a href="#" class="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-xs hover:border-brand-500 hover:text-brand-400 transition">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 2 -->
+                        <div
+                            class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition duration-300 flex-shrink-0">
+                            <div class="h-44 bg-gradient-to-br from-purple-900/50 to-slate-800 flex items-center justify-center">
+                                <i class="fa-solid fa-comments text-5xl text-slate-600 group-hover:text-purple-400 transition-colors"></i>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white" data-i18n="proj_2_title">Sentiment Analysis Dashboard</h3>
+                                    <div class="flex gap-2 text-lg text-slate-400">
+                                        <a href="#" class="hover:text-white"><i class="fa-brands fa-github"></i></a>
+                                        <a href="#" class="hover:text-white"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                    </div>
+                                </div>
+                                <p class="text-slate-300 text-sm" data-i18n="proj_2_desc">Monitorización en tiempo real de feedback de clientes usando BERT y visualización en Streamlit.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-purple-200">
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">HuggingFace</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">PyTorch</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">NLP</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs hover:bg-gray-200 transition">View detail</a>
+                                    <a href="#" class="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-xs hover:border-purple-400 transition">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 3 -->
+                        <div
+                            class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition duration-300 flex-shrink-0">
+                            <div class="h-44 bg-gradient-to-br from-emerald-900/40 to-slate-800 flex items-center justify-center">
+                                <i class="fa-solid fa-arrow-trend-up text-5xl text-slate-600 group-hover:text-emerald-400 transition-colors"></i>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white" data-i18n="proj_3_title">Demand Forecasting</h3>
+                                    <a href="#" class="text-slate-400 hover:text-white text-lg"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                                <p class="text-slate-300 text-sm" data-i18n="proj_3_desc">Modelo SARIMA para predicción de inventario retail con precisión del 92% (MAPE).</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-emerald-200">
+                                    <span class="bg-emerald-900/50 px-2 py-1 rounded">R</span>
+                                    <span class="bg-emerald-900/50 px-2 py-1 rounded">Time Series</span>
+                                    <span class="bg-emerald-900/50 px-2 py-1 rounded">Forecasting</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs hover:bg-gray-200 transition">View detail</a>
+                                    <a href="#" class="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-xs hover:border-emerald-400 transition">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 4 -->
+                        <div
+                            class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition duration-300 flex-shrink-0">
+                            <div class="h-44 bg-gradient-to-br from-cyan-900/50 to-slate-800 flex items-center justify-center">
+                                <i class="fa-solid fa-database text-5xl text-slate-600 group-hover:text-cyan-300 transition-colors"></i>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white">Customer 360</h3>
+                                    <a href="#" class="text-slate-400 hover:text-white text-lg"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                                <p class="text-slate-300 text-sm">Golden record de cliente y scoring de valor unificado para marketing.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-cyan-200">
+                                    <span class="bg-cyan-900/40 px-2 py-1 rounded">Python</span>
+                                    <span class="bg-cyan-900/40 px-2 py-1 rounded">SQL</span>
+                                    <span class="bg-cyan-900/40 px-2 py-1 rounded">dbt</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs hover:bg-gray-200 transition">View detail</a>
+                                    <a href="#" class="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-xs hover:border-cyan-300 hover:text-cyan-200 transition">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 5 -->
+                        <div
+                            class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition duration-300 flex-shrink-0">
+                            <div class="h-44 bg-gradient-to-br from-amber-900/40 to-slate-800 flex items-center justify-center">
+                                <i class="fa-solid fa-dollar-sign text-5xl text-slate-600 group-hover:text-amber-300 transition-colors"></i>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white">Pricing Optimization</h3>
+                                    <a href="#" class="text-slate-400 hover:text-white text-lg"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                                <p class="text-slate-300 text-sm">Elasticidades de precio y simulación de margen por SKU con escenarios.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-amber-200">
+                                    <span class="bg-amber-900/40 px-2 py-1 rounded">R</span>
+                                    <span class="bg-amber-900/40 px-2 py-1 rounded">Forecasting</span>
+                                    <span class="bg-amber-900/40 px-2 py-1 rounded">Bayesian</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs hover:bg-gray-200 transition">View detail</a>
+                                    <a href="#" class="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-xs hover:border-amber-300 hover:text-amber-200 transition">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 6 -->
+                        <div
+                            class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden hover:-translate-y-2 transition duration-300 flex-shrink-0">
+                            <div class="h-44 bg-gradient-to-br from-teal-900/40 to-slate-800 flex items-center justify-center">
+                                <i class="fa-solid fa-sitemap text-5xl text-slate-600 group-hover:text-teal-300 transition-colors"></i>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white">MLOps Pipeline</h3>
+                                    <a href="#" class="text-slate-400 hover:text-white text-lg"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                                <p class="text-slate-300 text-sm">Orquestación CI/CD para modelos, tracking y despliegue en contenedores.</p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-teal-200">
+                                    <span class="bg-teal-900/40 px-2 py-1 rounded">Docker</span>
+                                    <span class="bg-teal-900/40 px-2 py-1 rounded">CI/CD</span>
+                                    <span class="bg-teal-900/40 px-2 py-1 rounded">Monitoring</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs hover:bg-gray-200 transition">View detail</a>
+                                    <a href="#" class="px-4 py-2 rounded-full border border-slate-600 text-slate-200 text-xs hover:border-teal-300 hover:text-teal-200 transition">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Viz Lab Section (placeholder) -->
+    <section id="viz-lab" class="py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6 flex items-center justify-center gap-3">
+                <span class="text-brand-500 font-mono text-2xl">03.</span> <span data-i18n="viz_title">Visualization
+                    Lab</span>
+            </h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-12" data-i18n="viz_desc">Zona de experimentación donde el
+                código se encuentra con el arte. Gráficos interactivos generados con D3.js.</p>
+            <div
+                class="relative w-full h-80 glass-panel rounded-2xl border border-dashed border-slate-600 flex items-center justify-center">
+                <p class="text-slate-500 font-mono animate-pulse">&lt; Interactive_Simulation_Placeholder /&gt;</p>
+                <!-- D3 Animation to be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-12 border-t border-slate-800 text-center">
+        <h2 class="text-2xl font-bold mb-8" data-i18n="footer_title">¿Tienes datos interesantes?</h2>
+        <a href="mailto:pcdelcampon@gmail.com"
+            class="text-4xl md:text-5xl font-bold text-slate-400 hover:text-brand-500 transition-colors">pcdelcampon@gmail.com</a>
+        <div class="mt-12 flex justify-center gap-8 text-2xl text-slate-500">
+            <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank" class="hover:text-white"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/pcdelcampon" target="_blank" class="hover:text-white"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <div class="mt-12 text-sm text-slate-600 font-mono" data-i18n="footer_copy">&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible.</div>
+    </footer>
+
+    <!-- JS Scripts -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
