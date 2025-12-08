@@ -1,37 +1,37 @@
 # Portfolio PCDCN
 
-Landing de portafolio orientada a ciencia de datos/estadistica. El proyecto es estatico (HTML + Tailwind CDN) y se apoya en JS para animaciones, i18n y canvas.
+Static portfolio site for data science/statistics. Pure HTML plus Tailwind CDN, with JS for hero canvas animation, scroll effects, and i18n.
 
-## Estructura del proyecto
-- `index.html`: landing principal con secciones hero, sobre mi, portafolio, viz lab y contacto.
-- `project_template.html`: plantilla para detalle de proyectos/casos de estudio con el mismo estilo.
-- `assets/`: carpeta de recursos.
-  - `assets/js/`: logica de la UI.
-    - `main.js`: animacion canvas del hero (particulas y conexiones), animaciones de entrada con IntersectionObserver, placeholder de grafico D3 para habilidades, toggle de menu movil.
-    - `i18n.js`: diccionarios de textos en ES/EN y funciones de traduccion.
-    - `charts/`: reservado para visualizaciones adicionales (actualmente vacio).
-  - `assets/img/`: imagenes. Incluye `ClusterCarac_IA001.png` para mostrar en el portafolio.
-  - `assets/css/`: reservado para estilos locales si se necesitan (actualmente vacio; se usa Tailwind via CDN).
-- `.gitignore`: reglas basicas para excluir temporales/IDE.
-- `README.md`: este archivo.
+## Project structure
+- `index.html`: main landing page (hero, about, portfolio, viz lab, contact).
+- `project_template.html`: reusable project/case-study detail page with the same theme.
+- `assets/`: shared resources.
+  - `assets/js/`: UI logic.
+    - `main.js`: hero canvas particles/lines, scroll-in animations via IntersectionObserver, placeholder for a D3 skills chart, mobile menu toggle.
+    - `i18n.js`: ES/EN text dictionaries and translation handling.
+    - `charts/`: reserved for extra visualizations (currently empty).
+  - `assets/img/`: images. Includes `ClusterCarac_IA001.png` used in the portfolio section.
+  - `assets/css/`: reserved for local styles if needed (currently empty; Tailwind via CDN is used instead).
+- `.gitignore`: basic ignore rules for temp/IDE files.
+- `README.md`: this file.
 
-## Dependencias y librerias externas
-- TailwindCSS via CDN (configurado en el head de los HTML).
-- Google Fonts (Inter y JetBrains Mono).
-- Font Awesome para iconos.
-- KaTeX (estilos y JS) para formulas si se usan.
-- D3 v7 para futuras visualizaciones (placeholder en `main.js`).
+## External libraries
+- Tailwind CSS via CDN (configured in the head of both HTML files).
+- Google Fonts (Inter, JetBrains Mono).
+- Font Awesome for icons.
+- KaTeX (CSS/JS) for math rendering if needed.
+- D3 v7 for data visualizations (currently only referenced in `main.js`).
 
-## Uso rapido
-1. Abre `index.html` en el navegador para ver el portafolio.
-2. Usa el selector de idioma (banderas) para cambiar textos; los textos estan en `assets/js/i18n.js`.
-3. Para duplicar la plantilla de proyectos, copia `project_template.html` y reemplaza el contenido segun el caso.
+## Quick use
+1) Open `index.html` in the browser to view the portfolio.
+2) Switch language with the flag buttons; text keys live in `assets/js/i18n.js`.
+3) To create a project detail page, copy `project_template.html` and replace the content sections.
 
-## Personalizacion
-- Colores/tipografia: se ajustan en el bloque `tailwind.config` del head de los HTML.
-- Animacion del hero: en `assets/js/main.js` puedes ajustar `particleCount`, `connectionDistance` y `mouseDistance`.
-- Nuevas visualizaciones: crea scripts en `assets/js/charts/` o usa el contenedor `#skill-chart` y completa la funcion `initSkillChart`.
+## Customization
+- Colors/typography: adjust the `tailwind.config` block in the HTML head.
+- Hero animation: tweak `particleCount`, `connectionDistance`, and `mouseDistance` in `assets/js/main.js`.
+- New visualizations: add scripts under `assets/js/charts/` or implement `initSkillChart` for the `#skill-chart` container.
 
-## Notas
-- El sitio es totalmente estatico; no necesita build ni servidor. Para probar localmente con servidor simple: `python -m http.server 8000` y abre `http://localhost:8000`.
-- Si trabajas en Windows, Git puede convertir finales de linea a CRLF (aviso en staging); esto es normal si tu core.autocrlf esta activado.
+## Notes
+- Fully static site; no build step required. To serve locally: `python -m http.server 8000` then open `http://localhost:8000`.
+- On Windows, Git may report LF→CRLF conversion during staging; this is expected if `core.autocrlf` is enabled.
