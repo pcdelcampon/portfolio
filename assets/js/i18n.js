@@ -51,7 +51,7 @@ const translations = {
         viz_desc: "Zona de experimentación donde el código se encuentra con el arte. Gráficos interactivos generados con D3.js.",
         viz_placeholder: "Visualización Cargada",
 
-        footer_title: "¿Tienes algunos datos interesantes?",
+        footer_title: "¿Requieres entender mejor tus datos? Conversemos",
         footer_desc: "Estoy abierto a nuevas oportunidades en Estadística, Machine Learning, Ciencia de Datos y Visualización. Si quieres preguntar algo o simplemente saludar, estaré encantado de responder.",
         footer_cta: "¡Di hola!",
         footer_copy: "&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible."
@@ -104,7 +104,7 @@ const translations = {
         viz_desc: "Experimentation zone where code meets art. Interactive charts generated with D3.js.",
         viz_placeholder: "Visualization Loaded",
 
-        footer_title: "Got any interesting data to share?",
+        footer_title: "Need insights from your data? Let’s talk",
         footer_desc: "I’m open to new opportunities in Statistics, Machine Learning, Data Science, and Visualization. If you’d like to ask something, or simply say hello, I’ll be happy to answer.",
         footer_cta: "Say hello!",
         footer_copy: "&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible."
