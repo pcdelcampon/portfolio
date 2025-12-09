@@ -120,12 +120,20 @@
                             data-i18n="nav_contact">Contacto</a>
                     </div>
                     <!-- Language Switcher -->
-                    <div class="flex items-center gap-4 text-sm md:border-l md:border-slate-600 md:pl-6">
-                        <img id="btn-es" src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
-                            class="w-6 h-6 cursor-pointer transition-all hover:scale-110 opacity-40 grayscale hover:grayscale-0 hover:opacity-100">
-                        <img id="btn-en" src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
-                            class="w-6 h-6 cursor-pointer transition-all hover:scale-110 opacity-40 grayscale hover:grayscale-0 hover:opacity-100">
-                    </div>
+                    
+<div class="flex items-center gap-3 text-sm md:border-l md:border-slate-600 md:pl-6">
+    <button id="btn-es" class="flex items-center gap-2 md:gap-1 px-2 py-1 bg-slate-800/70 border border-slate-600/70 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+        <img src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
+            class="w-9 h-9 md:w-6 md:h-6 rounded-full">
+        <span class="font-semibold md:hidden text-slate-200 text-xs">ES</span>
+    </button>
+    <button id="btn-en" class="flex items-center gap-2 md:gap-1 px-2 py-1 bg-slate-800/70 border border-slate-600/70 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+        <img src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
+            class="w-9 h-9 md:w-6 md:h-6 rounded-full">
+        <span class="font-semibold md:hidden text-slate-200 text-xs">EN</span>
+    </button>
+</div>
+
                 </div>
             </div>
         </div>
