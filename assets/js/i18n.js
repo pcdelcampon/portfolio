@@ -51,7 +51,9 @@ const translations = {
         viz_desc: "Zona de experimentación donde el código se encuentra con el arte. Gráficos interactivos generados con D3.js.",
         viz_placeholder: "Visualización Cargada",
 
-        footer_title: "¿Tienes datos interesantes?",
+        footer_title: "¿Listo para colaborar?",
+        footer_desc: "Actualmente abierto a nuevas oportunidades en Ciencia de Datos/Visualización. Si tienes una pregunta o solo quieres saludar, haré lo posible por responderte.",
+        footer_cta: "Di hola",
         footer_copy: "&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible."
     },
     en: {
@@ -102,8 +104,10 @@ const translations = {
         viz_desc: "Experimentation zone where code meets art. Interactive charts generated with D3.js.",
         viz_placeholder: "Visualization Loaded",
 
-        footer_title: "Got interesting data?",
-        footer_copy: "&copy; 2024 Pedro C. Del Campo. Professional Portfolio... Thanks to VibeCoding for making this portfolio possible."
+        footer_title: "¿Listo para colaborar?",
+        footer_desc: "Actualmente abierto a nuevas oportunidades en Ciencia de Datos/Visualización. Si tienes una pregunta o solo quieres saludar, haré lo posible por responderte.",
+        footer_cta: "Di hola",
+        footer_copy: "&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible."
     }
 };
 
