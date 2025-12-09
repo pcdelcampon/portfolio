@@ -54,7 +54,7 @@ const translations = {
         footer_title: "¿Requieres entender mejor tus datos? Conversemos",
         footer_desc: "Estoy abierto a nuevas oportunidades en Estadística, Machine Learning, Ciencia de Datos y Visualización. Si quieres preguntar algo o simplemente saludar, estaré encantado de responder.",
         footer_cta: "¡Di hola!",
-        footer_copy: "&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible."
+        footer_copy: "&copy; 2024 Pedro C. Del Campo. Professional portfolio... Thanks to VibeCoding for making this portfolio possible."
     },
     en: {
         nav_home: "Home",
@@ -107,11 +107,11 @@ const translations = {
         footer_title: "Need insights from your data? Let’s talk",
         footer_desc: "I’m open to new opportunities in Statistics, Machine Learning, Data Science, and Visualization. If you’d like to ask something, or simply say hello, I’ll be happy to answer.",
         footer_cta: "Say hello!",
-        footer_copy: "&copy; 2024 Pedro C. Del Campo. Professional portfolio... Thanks to VibeCoding for making this portfolio possible."
+        footer_copy: "&copy; 2024 Pedro C. Del Campo. Portafolio profesional... Gracias a VibeCoding por hacer este portafolio posible."
     }
 };
 
-let currentLang = 'es';
+let currentLang = 'en';
 
 function setLanguage(lang) {
     currentLang = lang;
