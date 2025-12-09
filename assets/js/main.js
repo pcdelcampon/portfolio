@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================
-   1. Hero Canvas Animation (Neural Network)
+   1. Hero Canvas Animation (Flow Field)
    ========================================= */
 function initHeroAnimation() {
     const canvas = document.getElementById('hero-canvas');
@@ -19,109 +19,71 @@ function initHeroAnimation() {
 
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
+    const particles = [];
 
-    // Configuration
-    const particleCount = 60;
-    const connectionDistance = 150;
-    const mouseDistance = 200;
+    // Config for flow field
+    const particleCount = 150;
+    const speed = 0.6;
+    const fieldScale = 0.0015;
+    const trailOpacity = 0.05;
 
-    // Resize handler
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
     }
-
     window.addEventListener('resize', resize);
     resize();
 
-    // Mouse tracking
-    let mouse = { x: null, y: null };
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY + window.scrollY; // Adjust for scroll if canvas is fixed/absolute
-    });
-    window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    // Particle Class
     class Particle {
         constructor() {
+            this.reset();
+        }
+        reset() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 2 + 1;
+            this.hue = 190 + Math.random() * 40; // around brand color
         }
+        update(time) {
+            // Simple flow field driven by sin/cos and time
+            const angle = Math.sin((this.x + time * 0.05) * fieldScale) * Math.cos((this.y - time * 0.05) * fieldScale) * Math.PI * 2;
+            this.x += Math.cos(angle) * speed;
+            this.y += Math.sin(angle) * speed;
 
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
+            // wrap edges
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
 
-            // Bounce off edges
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-
-            // Mouse interaction
-            if (mouse.x != null) {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < mouseDistance) {
-                    const forceDirectionX = dx / distance;
-                    const forceDirectionY = dy / distance;
-                    const force = (mouseDistance - distance) / mouseDistance;
-                    const directionX = forceDirectionX * force * 0.5;
-                    const directionY = forceDirectionY * force * 0.5;
-                    this.vx += directionX;
-                    this.vy += directionY;
-                }
-            }
+            this.draw();
         }
-
         draw() {
-            ctx.fillStyle = 'rgba(14, 165, 233, 0.5)'; // Brand color
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.fillStyle = `hsla(${this.hue}, 90%, 60%, 0.6)`;
+            ctx.fillRect(this.x, this.y, 2, 2);
         }
     }
 
-    // Init particles
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
-    // Animation Loop
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
+    let lastTime = 0;
+    function animate(timestamp) {
+        const delta = timestamp - lastTime;
+        lastTime = timestamp;
 
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
+        // trail effect
+        ctx.fillStyle = `rgba(15, 23, 42, ${trailOpacity})`;
+        ctx.fillRect(0, 0, width, height);
 
-            // Draw connections
-            for (let j = i; j < particles.length; j++) {
-                let dx = particles[i].x - particles[j].x;
-                let dy = particles[i].y - particles[j].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < connectionDistance) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(14, 165, 233, ${1 - distance / connectionDistance})`;
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
+        const t = timestamp * 0.001;
+        for (const p of particles) {
+            p.update(t);
         }
         requestAnimationFrame(animate);
     }
-    animate();
+    // prime background
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, width, height);
+    requestAnimationFrame(animate);
 }
 
 /* =========================================
