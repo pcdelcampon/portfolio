@@ -41,8 +41,8 @@ const translations = {
         proj_1_title: "Motor de Predicción de Churn",
         proj_1_desc: "Reducción del 15% en tasa de abandono mediante análisis de supervivencia y Random Forest optimizado.",
 
-        proj_2_title: "Dashboard de Análisis de Sentimiento",
-        proj_2_desc: "Monitorización en tiempo real de feedback de clientes usando BERT y visualización en Streamlit.",
+        proj_2_title: "Reportes Anuales de Seguridad Vial en Bogota",
+        proj_2_desc: "Reportes anuales de seguridad vial en Bogota integrando datos de siniestros, tendencias y recomendaciones priorizadas para reducir víctimas en la ciudad.",
 
         proj_3_title: "Pronóstico de Demanda",
         proj_3_desc: "Modelo SARIMA para predicción de inventario retail con precisión del 92% (MAPE).",
@@ -94,8 +94,8 @@ const translations = {
         proj_1_title: "Churn Prediction Engine",
         proj_1_desc: "15% reduction in churn rate using survival analysis and optimized Random Forest.",
 
-        proj_2_title: "Sentiment Analysis Dashboard",
-        proj_2_desc: "Real-time customer feedback monitoring using BERT and Streamlit visualization.",
+        proj_2_title: "Bogota Road Safety Annual Reports",
+        proj_2_desc: "Annual road safety reports for Bogota integrating crash data, trends, and prioritized recommendations to reduce casualties citywide.",
 
         proj_3_title: "Demand Forecasting",
         proj_3_desc: "SARIMA model for retail inventory prediction with 92% accuracy (MAPE).",
