@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================
-   1. Hero Canvas Animation (Flow Field)
+   1. Hero Canvas Animation (Low-Poly Gradient Mesh)
    ========================================= */
 function initHeroAnimation() {
     const canvas = document.getElementById('hero-canvas');
@@ -19,13 +19,13 @@ function initHeroAnimation() {
 
     const ctx = canvas.getContext('2d');
     let width, height;
-    const particles = [];
 
-    // Config for flow field
-    const particleCount = 150;
-    const speed = 0.6;
-    const fieldScale = 0.0015;
-    const trailOpacity = 0.05;
+    // Grid settings
+    const cols = 18;
+    const rows = 12;
+    const points = [];
+    const noiseScale = 0.8;
+    const timeScale = 0.0018;
 
     function resize() {
         width = canvas.width = window.innerWidth;
@@ -34,55 +34,69 @@ function initHeroAnimation() {
     window.addEventListener('resize', resize);
     resize();
 
-    class Particle {
-        constructor() {
-            this.reset();
-        }
-        reset() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.hue = 190 + Math.random() * 40; // around brand color
-        }
-        update(time) {
-            // Simple flow field driven by sin/cos and time
-            const angle = Math.sin((this.x + time * 0.05) * fieldScale) * Math.cos((this.y - time * 0.05) * fieldScale) * Math.PI * 2;
-            this.x += Math.cos(angle) * speed;
-            this.y += Math.sin(angle) * speed;
-
-            // wrap edges
-            if (this.x < 0) this.x = width;
-            if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            if (this.y > height) this.y = 0;
-
-            this.draw();
-        }
-        draw() {
-            ctx.fillStyle = `hsla(${this.hue}, 90%, 60%, 0.6)`;
-            ctx.fillRect(this.x, this.y, 2, 2);
+    function initGrid() {
+        points.length = 0;
+        for (let y = 0; y <= rows; y++) {
+            for (let x = 0; x <= cols; x++) {
+                points.push({
+                    baseX: (x / cols) * width,
+                    baseY: (y / rows) * height,
+                    offX: Math.random() * 1000,
+                    offY: Math.random() * 1000
+                });
+            }
         }
     }
+    initGrid();
 
-    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+    // Simple 2D noise using sin/cos
+    function noise2D(x, y) {
+        return Math.sin(x) * Math.cos(y);
+    }
 
-    let lastTime = 0;
+    function drawTriangle(p1, p2, p3, time) {
+        const hue = 200 + noise2D(time * 0.4 + p1.baseX * 0.0005, time * 0.4 + p1.baseY * 0.0005) * 20;
+        const alpha = 0.35;
+        const grad = ctx.createLinearGradient(p1.x, p1.y, p3.x, p3.y);
+        grad.addColorStop(0, `hsla(${hue}, 80%, 60%, ${alpha})`);
+        grad.addColorStop(1, `hsla(${hue + 40}, 80%, 50%, ${alpha})`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.lineTo(p3.x, p3.y);
+        ctx.closePath();
+        ctx.fill();
+    }
+
     function animate(timestamp) {
-        const delta = timestamp - lastTime;
-        lastTime = timestamp;
+        const t = timestamp * timeScale;
+        ctx.clearRect(0, 0, width, height);
 
-        // trail effect
-        ctx.fillStyle = `rgba(15, 23, 42, ${trailOpacity})`;
-        ctx.fillRect(0, 0, width, height);
+        // Update positions with gentle noise offset
+        points.forEach(pt => {
+            const nX = noise2D(pt.offX + t, pt.offY);
+            const nY = noise2D(pt.offY - t, pt.offX);
+            pt.x = pt.baseX + nX * (noiseScale * 20);
+            pt.y = pt.baseY + nY * (noiseScale * 20);
+        });
 
-        const t = timestamp * 0.001;
-        for (const p of particles) {
-            p.update(t);
+        // Draw triangles row by row
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+                const idx = y * (cols + 1) + x;
+                const p1 = points[idx];
+                const p2 = points[idx + 1];
+                const p3 = points[idx + cols + 1];
+                const p4 = points[idx + cols + 2];
+                drawTriangle(p1, p3, p2, t);
+                drawTriangle(p2, p3, p4, t);
+            }
         }
+
         requestAnimationFrame(animate);
     }
-    // prime background
-    ctx.fillStyle = '#0f172a';
-    ctx.fillRect(0, 0, width, height);
+
     requestAnimationFrame(animate);
 }
 
