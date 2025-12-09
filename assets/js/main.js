@@ -172,4 +172,13 @@ function initMobileNav() {
     toggle.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
+
+    // Close menu after selecting any nav link on mobile
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (!menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        });
+    });
 }
