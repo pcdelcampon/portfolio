@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================
-   1. Hero Canvas Animation (Low-Poly Gradient Mesh)
+   1. Hero Canvas Animation (Neural Network)
    ========================================= */
 function initHeroAnimation() {
     const canvas = document.getElementById('hero-canvas');
@@ -19,13 +19,12 @@ function initHeroAnimation() {
 
     const ctx = canvas.getContext('2d');
     let width, height;
+    let particles = [];
 
-    // Grid settings
-    const cols = 18;
-    const rows = 12;
-    const points = [];
-    const noiseScale = 0.8;
-    const timeScale = 0.0018;
+    // Configuration
+    const particleCount = 60;
+    const connectionDistance = 150;
+    const mouseDistance = 200;
 
     function resize() {
         width = canvas.width = window.innerWidth;
@@ -34,70 +33,94 @@ function initHeroAnimation() {
     window.addEventListener('resize', resize);
     resize();
 
-    function initGrid() {
-        points.length = 0;
-        for (let y = 0; y <= rows; y++) {
-            for (let x = 0; x <= cols; x++) {
-                points.push({
-                    baseX: (x / cols) * width,
-                    baseY: (y / rows) * height,
-                    offX: Math.random() * 1000,
-                    offY: Math.random() * 1000
-                });
+    // Mouse tracking
+    let mouse = { x: null, y: null };
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY + window.scrollY; // Adjust for scroll if canvas is fixed/absolute
+    });
+    window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    // Particle Class
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off edges
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+
+            // Mouse interaction
+            if (mouse.x != null) {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouseDistance) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouseDistance - distance) / mouseDistance;
+                    const directionX = forceDirectionX * force * 0.5;
+                    const directionY = forceDirectionY * force * 0.5;
+                    this.vx += directionX;
+                    this.vy += directionY;
+                }
             }
         }
-    }
-    initGrid();
 
-    // Simple 2D noise using sin/cos
-    function noise2D(x, y) {
-        return Math.sin(x) * Math.cos(y);
-    }
-
-    function drawTriangle(p1, p2, p3, time) {
-        const hue = 200 + noise2D(time * 0.4 + p1.baseX * 0.0005, time * 0.4 + p1.baseY * 0.0005) * 20;
-        const alpha = 0.35;
-        const grad = ctx.createLinearGradient(p1.x, p1.y, p3.x, p3.y);
-        grad.addColorStop(0, `hsla(${hue}, 80%, 60%, ${alpha})`);
-        grad.addColorStop(1, `hsla(${hue + 40}, 80%, 50%, ${alpha})`);
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.lineTo(p3.x, p3.y);
-        ctx.closePath();
-        ctx.fill();
+        draw() {
+            ctx.fillStyle = 'rgba(14, 165, 233, 0.5)'; // Brand color
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
 
-    function animate(timestamp) {
-        const t = timestamp * timeScale;
+    // Init particles
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+
+    // Animation Loop
+    function animate() {
         ctx.clearRect(0, 0, width, height);
 
-        // Update positions with gentle noise offset
-        points.forEach(pt => {
-            const nX = noise2D(pt.offX + t, pt.offY);
-            const nY = noise2D(pt.offY - t, pt.offX);
-            pt.x = pt.baseX + nX * (noiseScale * 20);
-            pt.y = pt.baseY + nY * (noiseScale * 20);
-        });
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
 
-        // Draw triangles row by row
-        for (let y = 0; y < rows; y++) {
-            for (let x = 0; x < cols; x++) {
-                const idx = y * (cols + 1) + x;
-                const p1 = points[idx];
-                const p2 = points[idx + 1];
-                const p3 = points[idx + cols + 1];
-                const p4 = points[idx + cols + 2];
-                drawTriangle(p1, p3, p2, t);
-                drawTriangle(p2, p3, p4, t);
+            // Draw connections
+            for (let j = i; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < connectionDistance) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(14, 165, 233, ${1 - distance / connectionDistance})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
             }
         }
-
         requestAnimationFrame(animate);
     }
-
-    requestAnimationFrame(animate);
+    animate();
 }
 
 /* =========================================
