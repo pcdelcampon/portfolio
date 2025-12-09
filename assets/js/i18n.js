@@ -14,7 +14,7 @@ const translations = {
         hero_title_1: "Estadístico y Científico de Datos",
         hero_title_2: "",
         hero_subtitle: "Profesional de datos que transforma información compleja en insights claros y accionables mediante visualización, modelado y narrativa basada en evidencia. Me apasiona usar datos para entender personas, sistemas y retos reales. Mi objetivo es que los hallazgos sean accesibles, significativos y útiles para tomar mejores decisiones.",
-        btn_case_studies: "Ver proyectos",
+        btn_case_studies: "Ver portafolio",
         btn_talk: "Contáctame",
         btn_linkedin: "<i class=\"fa-brands fa-linkedin\"></i> LinkedIn",
 
@@ -65,7 +65,7 @@ const translations = {
         hero_title_1: "Statistician & Data Scientist",
         hero_title_2: "",
         hero_subtitle: "Data Worker who transforms complex data into clear, actionable insights through visualization, modeling, and evidence-based storytelling. I am passionate about using data to understand people, systems, and real-world challenges. My goal is to make insights accessible, meaningful, and useful for better decision-making.",
-        btn_case_studies: "View projects",
+        btn_case_studies: "View portfolio",
         btn_talk: "Contact me",
         btn_linkedin: "<i class=\"fa-brands fa-linkedin\"></i> LinkedIn",
 
