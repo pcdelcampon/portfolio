@@ -169,16 +169,18 @@ function initMobileNav() {
     const menu = document.getElementById('nav-menu');
     if (!toggle || !menu) return;
 
+    const closeMenu = () => {
+        if (!menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+        }
+    };
+
     toggle.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
 
-    // Close menu after selecting any nav link on mobile
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (!menu.classList.contains('hidden')) {
-                menu.classList.add('hidden');
-            }
-        });
+    // Close menu after selecting any link or button in the nav (mobile)
+    menu.querySelectorAll('a, button').forEach(item => {
+        item.addEventListener('click', closeMenu);
     });
 }
