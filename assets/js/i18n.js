@@ -5,7 +5,7 @@
 const translations = {
     es: {
         nav_home: "Inicio",
-        nav_about: "Sobre Mí",
+        nav_about: "Sobre mí",
         nav_projects: "Portafolio",
         nav_viz: "Viz Lab",
         nav_contact: "Contacto",
@@ -18,7 +18,7 @@ const translations = {
         btn_talk: "Contáctame",
         btn_linkedin: "<i class=\"fa-brands fa-linkedin\"></i> LinkedIn",
 
-        about_title: "Sobre Mí",
+        about_title: "Sobre mí",
         about_p1: "Estadístico y Científico de Datos con más de 12 años de experiencia aprovechando grandes volúmenes de datos para generar insights claros y accionables que apoyan la toma de decisiones estratégicas.",
         about_p2: "Sólida experiencia en muestreo estadístico, análisis multivariado, machine learning, modelado predictivo, big data y visualización de datos, con dominio avanzado de herramientas analíticas modernas y la adaptabilidad para trabajar eficazmente en diversas industrias y entornos analíticos.",
         about_stack: "Habilidades",
