@@ -64,7 +64,7 @@ const translations = {
         nav_contact: "Contact",
 
         hero_greeting: "HELLO, I'M PEDRO",
-        hero_title_1: "Statistician & Data Scientist",
+        hero_title_1: "Data Scientist & Statistician",
         hero_title_2: "",
         hero_subtitle: "Data Worker who transforms complex data into clear, actionable insights through visualization, modeling, and evidence-based storytelling. I am passionate about using data to understand people, systems, and real-world challenges. My goal is to make insights accessible, meaningful, and useful for better decision-making.",
         btn_case_studies: "View portfolio",
