@@ -72,7 +72,7 @@ const translations = {
         btn_linkedin: "<i class=\"fa-brands fa-linkedin\"></i> LinkedIn",
 
         about_title: "About Me",
-        about_p1: "Statistician and Data Scientist with 12+ years of experience leveraging large datasets to generate clear, actionable insights that support strategic decision-making.",
+        about_p1: "Data Scientist and Statistician with 12+ years of experience leveraging large datasets to generate clear, actionable insights that support strategic decision-making.",
         about_p2: "Strong expertise in statistical sampling, multivariate analysis, machine learning, predictive modeling, big data, and data visualization, with advanced command of modern analytical tools and the adaptability to work effectively across industries and analytical environments.",
         about_stack: "Skills",
         skill_langs: "Python, R, SQL, C, C++",
