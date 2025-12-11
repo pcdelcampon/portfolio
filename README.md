@@ -1,39 +1,39 @@
 # Portfolio PCDCN
 
-Static portfolio site for data science/statistics. Pure HTML plus Tailwind CDN, with JS for hero canvas animation, scroll effects, and i18n.
+Static, bilingual (ES/EN) portfolio for Data Science/Statistics. Pure HTML + Tailwind CDN with a canvas hero animation, scroll-in effects, and a slot for D3 visualizations.
+
+## Quick start
+- View online: https://pcdelcampon.github.io/portfolio/
+- Open `index.html` in your browser.
+- Optional local server: `python -m http.server 8000` (then go to `http://localhost:8000`).
+- Change language with the flag buttons; text keys live in `assets/js/i18n.js`.
+- To publish, drop the files on any static host (GitHub Pages, Netlify, Vercel, S3, etc.).
 
 ## Project structure
-- `index.html`: main landing page (hero, about, portfolio, viz lab, contact).
-- `project_template.html`: reusable project/case-study detail page with the same theme.
-- `assets/`: shared resources.
-  - `assets/js/`: UI logic.
-    - `main.js`: hero canvas particles/lines, scroll-in animations via IntersectionObserver, placeholder for a D3 skills chart, mobile menu toggle.
-    - `i18n.js`: ES/EN text dictionaries and translation handling.
-    - `charts/`: reserved for extra visualizations (currently empty).
-  - `assets/img/`: images. Includes `ClusterCarac_IA001.png` used in the portfolio section.
-  - `assets/css/`: reserved for local styles if needed (currently empty; Tailwind via CDN is used instead).
-- `.gitignore`: basic ignore rules for temp/IDE files.
-- `README.md`: this file.
+- `index.html`: landing page (hero, about, portfolio, viz lab, contact) with Tailwind config in the head.
+- `project_template.html`: clone for each case study; keep the layout and swap the copy/assets.
+- `assets/js/main.js`: hero canvas network animation, IntersectionObserver scroll reveals, mobile nav toggle, placeholder for a D3 skill chart.
+- `assets/js/i18n.js`: language dictionaries and flag toggle logic; persists preference in `localStorage`.
+- `assets/js/charts/`: reserved for extra visualizations.
+- `assets/img/`: portfolio images (e.g., `ClusterCarac_IA001.png`) and avatars.
+- `assets/css/`: empty by default if you want local styles instead of CDN-only.
 
-## External libraries
-- Tailwind CSS via CDN (configured in the head of both HTML files).
-- Google Fonts (Inter, JetBrains Mono).
-- Font Awesome for icons.
-- KaTeX (CSS/JS) for math rendering if needed.
-- D3 v7 for data visualizations (currently only referenced in `main.js`).
+## Features
+- Hero canvas with particle/line animation and mouse interaction.
+- ES/EN toggle with instant text swap and saved preference.
+- Responsive Tailwind layout with scroll-in animations.
+- Dedicated Viz Lab block for D3 experiments.
+- Reusable case-study template page.
 
-## Quick use
-1) Open `index.html` in the browser to view the portfolio.
-2) Switch language with the flag buttons; text keys live in `assets/js/i18n.js`.
-3) To create a project detail page, copy `project_template.html` and replace the content sections.
-
-## Customization
-- Colors/typography: adjust the `tailwind.config` block in the HTML head.
-- Hero animation: tweak `particleCount`, `connectionDistance`, and `mouseDistance` in `assets/js/main.js`.
-- New visualizations: add scripts under `assets/js/charts/` or implement `initSkillChart` for the `#skill-chart` container.
+## Customize
+- Theme: edit the `tailwind.config` script block inside the HTML head to adjust colors/typography.
+- Hero animation: change `particleCount`, `connectionDistance`, and `mouseDistance` in `assets/js/main.js`.
+- Skills chart: fill in `initSkillChart` in `assets/js/main.js` or add scripts under `assets/js/charts/`.
+- Copy: update dictionaries in `assets/js/i18n.js` for both languages; add new keys as needed.
+- Projects: duplicate `project_template.html`, update content, and link it from `index.html`.
 
 ## Notes
-- Fully static site; no build step required. To serve locally: `python -m http.server 8000` then open `http://localhost:8000`.
-- On Windows, Git may report LF→CRLF conversion during staging; this is expected if `core.autocrlf` is enabled.
+- Fully static; no build step or dependencies required.
+- Windows users may see LF/CRLF notices when staging if `core.autocrlf` is on.
 
-Thank you VibeCoding to make this porfolio possible ... XD
+Gracias a VibeCoding por hacer posible este portafolio... XD
