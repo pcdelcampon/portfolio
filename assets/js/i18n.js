@@ -9,6 +9,10 @@ const translations = {
         nav_projects: "Portafolio",
         nav_viz: "Viz Lab",
         nav_contact: "Contacto",
+        project_back: "Volver al portafolio",
+        project_repo_btn: "Ver en GitHub",
+        proj_cluster_title: "ClusterCarac: caracterización de clusters y clases",
+        proj_cluster_desc: "Paquete en R que muestra qué define cada cluster o categoría; vista previa retro de la caracterización.",
 
         hero_greeting: "HOLA, SOY PEDRO",
         hero_title_1: "Estadístico y Científico de Datos",
@@ -62,6 +66,10 @@ const translations = {
         nav_projects: "Portfolio",
         nav_viz: "Viz Lab",
         nav_contact: "Contact",
+        project_back: "Back to portfolio",
+        project_repo_btn: "View on GitHub",
+        proj_cluster_title: "ClusterCarac: Clusters & Classifications",
+        proj_cluster_desc: "R package that surfaces what defines each cluster or category; retro-inspired characterization preview.",
 
         hero_greeting: "HELLO, I'M PEDRO",
         hero_title_1: "Data Scientist & Statistician",
@@ -141,6 +149,16 @@ function setLanguage(lang) {
         btnEs.className = lang === 'es' ? activeClass : inactiveClass;
         btnEn.className = lang === 'en' ? activeClass : inactiveClass;
     }
+
+    // Toggle content blocks that are language-specific
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        const targetLang = element.getAttribute('data-lang');
+        if (targetLang === lang) {
+            element.classList.remove('hidden');
+        } else {
+            element.classList.add('hidden');
+        }
+    });
 
     // Save preference
     localStorage.setItem('preferred_language', lang);
