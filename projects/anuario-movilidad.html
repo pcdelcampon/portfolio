@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Bogotá Road Casualty Yearbook | Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+    <nav
+        class="fixed top-0 left-0 right-0 w-full z-50 glass-panel h-16 flex items-center bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 w-full flex items-center justify-between">
+            <a href="../index.html"
+                class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm font-semibold"
+                data-i18n="project_back">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to portfolio</span>
+            </a>
+            <div class="flex items-center gap-3 bg-slate-800/80 px-2 py-1 rounded-full border border-slate-700">
+                <button id="btn-es">
+                    <img src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
+                        class="w-6 h-6 rounded-full">
+                </button>
+                <button id="btn-en">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
+                        class="w-6 h-6 rounded-full">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16 min-h-screen px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div class="space-y-6">
+                <div class="text-sm font-mono text-brand-500">projects/anuario-movilidad</div>
+
+                <div data-lang="en" class="space-y-3">
+                    <h1 class="text-3xl md:text-4xl font-bold text-white">Data Science & Visualization: Bogotá Road
+                        Casualty Yearbook (2017–2022)</h1>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        As a Data Scientist at the Bogotá District Secretariat of Mobility, I co-led the analysis,
+                        indicator design, and visualization of road casualties for 2017–2022—turning raw crash data into
+                        actionable intelligence for the city’s Vision Zero strategy.
+                    </p>
+                </div>
+
+                <div data-lang="es" class="space-y-3 hidden">
+                    <h1 class="text-3xl md:text-4xl font-bold text-white">Estadística y Visualización: Anuario de
+                        Siniestralidad Vial de Bogotá (2017–2022)</h1>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        Como Estadístico en la Secretaría Distrital de Movilidad de Bogotá, co-lideré el análisis,
+                        diseño de indicadores y visualización de la siniestralidad vial 2017–2022, convirtiendo datos crudos
+                        en inteligencia accionable para la estrategia Vision Zero de la ciudad.
+                    </p>
+                </div>
+
+                <div data-lang="en" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100">
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">ggplot2</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Vision Zero</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Traffic Safety</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Indicators</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Data Viz</span>
+                </div>
+
+                <div data-lang="es" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100 hidden">
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">ggplot2</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Vision Zero</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Seguridad vial</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Indicadores</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Visualización</span>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="#publications"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-brand-500 hover:text-brand-400 transition-colors">
+                        <i class="fa-solid fa-book-open"></i> <span>View official publications</span>
+                    </a>
+                    <a href="../index.html"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-slate-400 transition-colors">
+                        <i class="fa-solid fa-arrow-left"></i> <span data-i18n="project_back">Back to portfolio</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900">
+                <img src="../assets/img/Anuarios_movilidad.png" alt="Road casualty yearbook visualization"
+                    class="w-full h-full object-cover max-h-[32rem]">
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto mt-12 space-y-10">
+            <article data-lang="en"
+                class="glass-panel border border-slate-800 rounded-2xl p-8 shadow-2xl space-y-8">
+                <section class="space-y-3">
+                    <h2 class="text-2xl font-bold text-white">The challenge: coherence and indicator generation</h2>
+                    <p class="text-slate-300">Road casualty data is vast and heterogeneous. My first task was to ensure
+                        quality and methodological coherence—validating and cleaning the accident database so every indicator
+                        would be statistically sound.</p>
+                    <p class="text-slate-300">Beyond counting events, I designed and calculated key metrics (fatality rates,
+                        exposure-to-risk rates, and association indicators between involved parties) to surface complex risk
+                        patterns by road user (cyclists, motorcyclists, pedestrians) and their factors. These insights drove
+                        focused prevention strategies.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">R and ggplot2: the visual narrative</h3>
+                    <p class="text-slate-300">The yearbook is a communication tool. Leveraging R and ggplot2, I designed and
+                        generated the visualizations that told a clear, rigorous story—highlighting mortality trends and
+                        high-risk areas so authorities and citizens could understand where and why lives were being lost.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Impact and legacy</h3>
+                    <p class="text-slate-300">The indicators and visuals became central evidence for planning and
+                        prioritizing road safety interventions in Bogotá. This work showed how advanced analytics supports
+                        Vision Zero and set a precedent for how the city tackles safety.</p>
+                </section>
+
+                <section id="publications" class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Official publications</h3>
+                    <p class="text-slate-300">Road Casualty Yearbooks | Bogotá Mobility Observatory (OMB). Add the official
+                        link here to showcase the published yearbooks.</p>
+                </section>
+            </article>
+
+            <article data-lang="es"
+                class="glass-panel border border-slate-800 rounded-2xl p-8 shadow-2xl space-y-8 hidden">
+                <section class="space-y-3">
+                    <h2 class="text-2xl font-bold text-white">El reto: coherencia y construcción de indicadores</h2>
+                    <p class="text-slate-300">La siniestralidad vial es amplia y heterogénea. Mi primera tarea fue asegurar
+                        la calidad y coherencia metodológica: validar y depurar la base de accidentes para que cada
+                        indicador fuera estadísticamente sólido.</p>
+                    <p class="text-slate-300">Más allá de contar eventos, diseñé y calculé métricas clave (tasas de
+                        fatalidad, tasas de exposición al riesgo e indicadores de asociación entre actores involucrados) para
+                        revelar patrones complejos por usuario vial (ciclistas, motociclistas, peatones) y sus factores. Estos
+                        hallazgos impulsaron estrategias de prevención más focalizadas.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">R y ggplot2: la narrativa visual</h3>
+                    <p class="text-slate-300">El anuario es una herramienta de comunicación. Con R y ggplot2 diseñé y generé
+                        las visualizaciones que contaron una historia clara y rigurosa—resaltando tendencias de mortalidad y
+                        zonas de mayor riesgo para que autoridades y ciudadanía entendieran dónde y por qué se pierden vidas.
+                    </p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Impacto y legado</h3>
+                    <p class="text-slate-300">Los indicadores y visualizaciones se convirtieron en evidencia central para
+                        la planeación y priorización de intervenciones de seguridad vial en Bogotá. Este trabajo mostró cómo
+                        la analítica avanzada respalda Vision Zero y marcó un precedente sobre cómo la ciudad aborda la
+                        seguridad.</p>
+                </section>
+
+                <section id="publications-es" class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Publicaciones oficiales</h3>
+                    <p class="text-slate-300">Anuarios de Siniestralidad Vial | Observatorio de Movilidad de Bogotá (OMB).
+                        Agrega aquí el enlace oficial para mostrar los anuarios publicados.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

@@ -45,8 +45,8 @@ const translations = {
         proj_1_title: "Motor de Predicción de Churn",
         proj_1_desc: "Reducción del 15% en tasa de abandono mediante análisis de supervivencia y Random Forest optimizado.",
 
-        proj_2_title: "Anuario de Siniestralidad Vial",
-        proj_2_desc: "Reportes anuales de seguridad vial en Bogota integrando datos de siniestros, tendencias y recomendaciones priorizadas para reducir víctimas en la ciudad.",
+        proj_2_title: "Estadística y Viz: Anuario de Siniestralidad Vial (2017–2022)",
+        proj_2_desc: "Indicadores y visualizaciones en R/ggplot2 para los anuarios 2017–2022 de Bogotá, habilitando acciones Vision Zero.",
 
         proj_3_title: "Pronóstico de Demanda",
         proj_3_desc: "Modelo SARIMA para predicción de inventario retail con precisión del 92% (MAPE).",
@@ -102,8 +102,8 @@ const translations = {
         proj_1_title: "Churn Prediction Engine",
         proj_1_desc: "15% reduction in churn rate using survival analysis and optimized Random Forest.",
 
-        proj_2_title: "Bogota Road Safety Annual Reports",
-        proj_2_desc: "Annual road safety reports for Bogota integrating crash data, trends, and prioritized recommendations to reduce casualties citywide.",
+        proj_2_title: "Data Science & Viz: Bogotá Road Casualty Yearbook (2017–2022)",
+        proj_2_desc: "Designed indicators and ggplot2 visuals for Bogotá’s 2017–2022 road casualty yearbooks, enabling Vision Zero actions.",
 
         proj_3_title: "Demand Forecasting",
         proj_3_desc: "SARIMA model for retail inventory prediction with 92% accuracy (MAPE).",
