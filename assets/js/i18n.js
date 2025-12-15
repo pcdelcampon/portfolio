@@ -41,7 +41,7 @@ const translations = {
         proj_1_title: "Motor de Predicción de Churn",
         proj_1_desc: "Reducción del 15% en tasa de abandono mediante análisis de supervivencia y Random Forest optimizado.",
 
-        proj_2_title: "Reportes Anuales de Seguridad Vial en Bogota",
+        proj_2_title: "Anuario de Siniestralidad Vial",
         proj_2_desc: "Reportes anuales de seguridad vial en Bogota integrando datos de siniestros, tendencias y recomendaciones priorizadas para reducir víctimas en la ciudad.",
 
         proj_3_title: "Pronóstico de Demanda",
@@ -164,4 +164,3 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnEs) btnEs.addEventListener('click', () => setLanguage('es'));
     if (btnEn) btnEn.addEventListener('click', () => setLanguage('en'));
 });
-
