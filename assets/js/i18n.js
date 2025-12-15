@@ -11,7 +11,7 @@ const translations = {
         nav_contact: "Contacto",
         project_back: "Volver al portafolio",
         project_repo_btn: "Ver en GitHub",
-        proj_cluster_title: "ClusterCarac: caracterización de clusters y clases",
+        proj_cluster_title: "Descubre el perfil único de cada segmento de datos",
         proj_cluster_desc: "Paquete en R que muestra qué define cada cluster o categoría; vista previa retro de la caracterización.",
 
         hero_greeting: "HOLA, SOY PEDRO",
@@ -68,7 +68,7 @@ const translations = {
         nav_contact: "Contact",
         project_back: "Back to portfolio",
         project_repo_btn: "View on GitHub",
-        proj_cluster_title: "ClusterCarac: Clusters & Classifications",
+        proj_cluster_title: "Uncover the unique profile of every data segment",
         proj_cluster_desc: "R package that surfaces what defines each cluster or category; retro-inspired characterization preview.",
 
         hero_greeting: "HELLO, I'M PEDRO",
