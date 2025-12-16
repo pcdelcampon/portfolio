@@ -36,4 +36,4 @@ Static, bilingual (ES/EN) portfolio for Data Science/Statistics. Pure HTML + Tai
 - Fully static; no build step or dependencies required.
 - Windows users may see LF/CRLF notices when staging if `core.autocrlf` is on.
 
-Gracias a VibeCoding por hacer posible este portafolio... XD
+Thanks to VibeCoding. You help me to make this portfolio ... XD
