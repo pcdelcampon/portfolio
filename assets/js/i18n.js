@@ -50,6 +50,8 @@ const translations = {
 
         proj_3_title: "Pronóstico de Demanda",
         proj_3_desc: "Modelo SARIMA para predicción de inventario retail con precisión del 92% (MAPE).",
+        proj_factoclass_title: "FactoClass: dejar que los datos revelen su propia estructura",
+        proj_factoclass_desc: "Trabajo temprano en Estadística: combinación factorial + clustering (Ward/K-means) inspirado en Lebart, con guía de Campo Elías Pardo.",
 
         viz_title: "Visualization Lab",
         viz_desc: "Zona de experimentación donde el código se encuentra con el arte. Gráficos interactivos generados con D3.js.",
@@ -107,6 +109,8 @@ const translations = {
 
         proj_3_title: "Demand Forecasting",
         proj_3_desc: "SARIMA model for retail inventory prediction with 92% accuracy (MAPE).",
+        proj_factoclass_title: "FactoClass: letting data reveal their own structure",
+        proj_factoclass_desc: "Early Statistics work: factorial + clustering pipeline (Ward/K-means) inspired by Lebart, guided by Campo Elías Pardo.",
 
         viz_title: "Visualization Lab",
         viz_desc: "Experimentation zone where code meets art. Interactive charts generated with D3.js.",

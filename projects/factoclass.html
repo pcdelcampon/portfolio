@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>FactoClass | Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+    <nav
+        class="fixed top-0 left-0 right-0 w-full z-50 glass-panel h-16 flex items-center bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 w-full flex items-center justify-between">
+            <a href="../index.html"
+                class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm font-semibold"
+                data-i18n="project_back">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to portfolio</span>
+            </a>
+            <div class="flex items-center gap-3 bg-slate-800/80 px-2 py-1 rounded-full border border-slate-700">
+                <button id="btn-es">
+                    <img src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
+                        class="w-6 h-6 rounded-full">
+                </button>
+                <button id="btn-en">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
+                        class="w-6 h-6 rounded-full">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16 min-h-screen px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div class="space-y-6">
+                <div class="text-sm font-mono text-brand-500">projects/factoclass</div>
+
+                <div data-lang="en" class="space-y-3">
+                    <h1 class="text-3xl md:text-4xl font-bold text-white">FactoClass: letting data reveal their own
+                        structure</h1>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        FactoClass was part of my early work as a Statistics student at the Universidad Nacional de Colombia,
+                        developed under the guidance of Campo Elías Pardo and inspired by Lebart et al.’s methodology. It
+                        reflects how deeply exploring data structure enables meaningful clusters.
+                    </p>
+                </div>
+
+                <div data-lang="es" class="space-y-3 hidden">
+                    <h1 class="text-3xl md:text-4xl font-bold text-white">FactoClass: dejar que los datos revelen su
+                        propia estructura</h1>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        FactoClass hizo parte de mi trabajo temprano como estudiante de Estadística en la Universidad Nacional
+                        de Colombia, desarrollado bajo la guía de Campo Elías Pardo e inspirado en la metodología de Lebart y
+                        colegas. Refleja cómo explorar a fondo la estructura de los datos permite construir clusters con
+                        sentido.
+                    </p>
+                </div>
+
+                <div data-lang="en" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100">
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Statistics</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">DataScience</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Multivariate Analysis</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Clustering</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">RStats</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Applied Statistics</span>
+                </div>
+
+                <div data-lang="es" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100 hidden">
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Estadística</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">DataScience</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Análisis Multivariado</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Clustering</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">RStats</span>
+                    <span class="bg-brand-900/50 px-2 py-1 rounded">Estadística Aplicada</span>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://cran.r-project.org/web/packages/FactoClass/index.html" target="_blank" rel="noreferrer"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-brand-500 hover:text-brand-400 transition-colors">
+                        <i class="fa-solid fa-book"></i> CRAN reference
+                    </a>
+                    <a href="https://www.redalyc.org/pdf/899/89930206.pdf" target="_blank" rel="noreferrer"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-brand-500 hover:text-brand-400 transition-colors">
+                        <i class="fa-solid fa-file-pdf"></i> Paper (PDF)
+                    </a>
+                    <a href="../index.html"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-slate-200 hover:border-slate-400 transition-colors">
+                        <i class="fa-solid fa-arrow-left"></i> <span data-i18n="project_back">Back to portfolio</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900">
+                <img src="../assets/img/FactoClass_template.png" alt="FactoClass overview"
+                    class="w-full h-full object-cover max-h-[32rem]">
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto mt-12 space-y-10">
+            <article data-lang="en"
+                class="glass-panel border border-slate-800 rounded-2xl p-8 shadow-2xl space-y-8">
+                <section class="space-y-3">
+                    <h2 class="text-2xl font-bold text-white">Exploration before prediction</h2>
+                    <p class="text-slate-300">I’ve always believed that before modeling or predicting, we need to explore.
+                        FactoClass comes from that idea.</p>
+                    <p class="text-slate-300">This work is part of what I did while I was a Statistics student at the
+                        Universidad Nacional de Colombia. It was my first steps as a statistician and programmer, developed
+                        under the guidance of Campo Elías Pardo and inspired by Lebart and colleagues.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Method: factorial + clustering</h3>
+                    <p class="text-slate-300">The package implements a strategy that combines factorial methods and cluster
+                        analysis to explore complex data tables. First, a factorial space organizes variability and reduces
+                        noise; then clustering follows—initial partitions, Ward hierarchical aggregation, and a final K-means
+                        consolidation—all within that shared space.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Why it matters</h3>
+                    <p class="text-slate-300">Looking back, this work reminds me that deeply understanding and exploring the
+                        nature of things is what allows us to classify them in a meaningful way.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Workflow snapshot</h3>
+                    <img src="../assets/img/FactoClass_frame_EN.png" alt="FactoClass workflow (English)"
+                        class="w-full rounded-xl border border-slate-700">
+                </section>
+            </article>
+
+            <article data-lang="es"
+                class="glass-panel border border-slate-800 rounded-2xl p-8 shadow-2xl space-y-8 hidden">
+                <section class="space-y-3">
+                    <h2 class="text-2xl font-bold text-white">Explorar antes de predecir</h2>
+                    <p class="text-slate-300">Siempre he creído que antes de modelar o predecir hay que explorar. FactoClass
+                        nace de esa idea.</p>
+                    <p class="text-slate-300">Este trabajo hace parte de lo que hice como estudiante de Estadística en la
+                        Universidad Nacional de Colombia. Fueron mis primeros pasos como estadístico y programador, bajo la
+                        guía de Campo Elías Pardo e inspirado en la metodología de Lebart y sus colegas.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Método: factorial + clustering</h3>
+                    <p class="text-slate-300">El paquete implementa una estrategia que combina métodos factoriales y análisis
+                        de clusters para explorar tablas de datos complejas. Primero se construye un espacio factorial que
+                        organiza la variabilidad y reduce ruido; luego viene el clustering—particiones iniciales, agregación
+                        jerárquica de Ward y consolidación final con K-means—todo en ese mismo espacio.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Por qué importa</h3>
+                    <p class="text-slate-300">Mirando atrás, este trabajo me recuerda que entender y explorar a fondo la
+                        naturaleza de las cosas es lo que permite clasificarlas de manera significativa.</p>
+                </section>
+
+                <section class="space-y-3">
+                    <h3 class="text-xl font-semibold text-white">Flujo de trabajo</h3>
+                    <img src="../assets/img/FactoClass_frame_ES.png" alt="Flujo FactoClass (Español)"
+                        class="w-full rounded-xl border border-slate-700">
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <script src="../assets/js/i18n.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
