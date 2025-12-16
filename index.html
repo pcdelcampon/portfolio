@@ -96,10 +96,16 @@
 <nav class="fixed top-0 left-0 right-0 w-full z-50 glass-panel border-b border-slate-800 bg-slate-900/95 backdrop-blur-md relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold font-mono tracking-tighter">
+                <div class="flex items-center relative group">
+                    <a href="#hero" title="Pedro C. · Data Science & Stats"
+                        class="text-xl font-bold font-mono tracking-tighter hover:text-brand-300 transition-colors">
                         &lt;PedroC/<span class="text-brand-500">S&amp;DS</span>&gt;
-                    </span>
+                    </a>
+                    <div
+                        class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-3 w-40 bg-slate-900/90 border border-slate-700 shadow-xl rounded-xl p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <img src="assets/img/PCDCN8bits.png" alt="PedroC retro avatar"
+                            class="w-full h-auto rounded-lg">
+                    </div>
                 </div>
                 <button id="nav-toggle"
                     class="md:hidden flex items-center justify-center w-12 h-12 rounded-full bg-brand-600 text-white shadow-xl border border-brand-500/80 hover:bg-brand-500 hover:scale-105 hover:ring-2 hover:ring-white/60 transition focus:outline-none focus:ring-2 focus:ring-white/70">
