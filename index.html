@@ -149,6 +149,20 @@
             color: #0f172a;
         }
 
+        /* Nav menu flyout */
+        .nav-menu-panel {
+            background: var(--panel);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        body.theme-light .nav-menu-panel {
+            background: #ffffff;
+            color: #0f172a;
+            border-color: #cbd5e1;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+        }
+
         /* Buttons contrast in light mode */
         body.theme-light .btn-outline {
             color: #0f172a !important;
@@ -205,8 +219,8 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div id="nav-menu"
-                        class="hidden flex-col gap-4 bg-slate-900/95 rounded-2xl p-4 shadow-2xl absolute right-4 top-20 w-48 md:w-auto md:shadow-none md:bg-transparent md:p-0 md:flex md:flex-row md:items-center md:gap-6 md:gap-8 md:static md:rounded-none md:top-auto md:right-auto">
+                <div id="nav-menu"
+                    class="nav-menu-panel hidden flex-col gap-4 bg-slate-900/95 rounded-2xl p-4 shadow-2xl absolute right-4 top-20 w-48 md:w-auto md:shadow-none md:bg-transparent md:p-0 md:flex md:flex-row md:items-center md:gap-6 md:gap-8 md:static md:rounded-none md:top-auto md:right-auto">
                         <div class="flex flex-col gap-3 md:flex-row md:items-baseline md:space-x-8 md:gap-0">
                             <a href="#hero"
                                 class="hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium transition-colors"
