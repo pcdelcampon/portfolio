@@ -83,7 +83,7 @@ function initHeroAnimation() {
 
         draw() {
             const lightMode = document.body.classList.contains('theme-light');
-            ctx.fillStyle = lightMode ? 'rgba(14, 165, 233, 0.25)' : 'rgba(14, 165, 233, 0.5)'; // Softer in light mode
+            ctx.fillStyle = lightMode ? 'rgba(14, 165, 233, 0.35)' : 'rgba(14, 165, 233, 0.5)'; // Softer in light mode
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
