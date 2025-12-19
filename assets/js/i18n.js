@@ -15,7 +15,7 @@ const translations = {
         proj_cluster_desc: "Paquete en R que muestra qué define cada cluster o categoría; vista previa retro de la caracterización.",
 
         hero_greeting: "HOLA, SOY PEDRO",
-        hero_title_1: "Estadístico y Científico de Datos",
+        hero_title_1: "Estadístico & Científico de Datos",
         hero_title_2: "",
         hero_subtitle: "Profesional de datos que transforma información compleja en insights claros y accionables mediante visualización, modelado y narrativa basada en evidencia. Me apasiona usar datos para entender personas, sistemas y retos reales. Mi objetivo es que los hallazgos sean accesibles, significativos y útiles para tomar mejores decisiones.",
         btn_case_studies: "Ver portafolio",

@@ -43,16 +43,16 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9', // Sky blue inspired
-                            600: '#0284c7',
-                            900: '#0c4a6e',
+                            50: '#e0f8f9',
+                            100: '#b8eff1',
+                            500: 'var(--color-primary)', // Teal
+                            600: '#009aa3',
+                            900: '#006f75',
                         },
                         dark: {
-                            bg: '#0f172a', // Slate 900
-                            card: '#1e293b', // Slate 800
-                            text: '#f8fafc', // Slate 50
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#f8fafc',
                         }
                     }
                 }
@@ -67,6 +67,11 @@
             --panel: rgba(30, 41, 59, 0.7);
             --border: rgba(255, 255, 255, 0.1);
             --nav: rgba(15, 23, 42, 0.95);
+            /* Main Brand Colors (dark mode) */
+            --color-primary: #00bfc4;
+            --color-secondary: #f8766d;
+            --color-primary-strong: #00bfc4;
+            --color-secondary-strong: #f8766d;
         }
 
         body {
@@ -81,12 +86,18 @@
         }
 
         body.theme-light {
-            --bg: #f8fafc;
+            --bg: #ffffff;
             --text: #0f172a;
             --card: rgba(255, 255, 255, 0.9);
             --panel: rgba(255, 255, 255, 0.9);
             --border: rgba(15, 23, 42, 0.08);
             --nav: rgba(255, 255, 255, 0.95);
+            /* Light Theme Brand Colors: switch to turquoise and slightly deeper coral */
+            /* Light mode: swap order (coral then cyan) */
+            --color-primary: #f8766d;
+            --color-secondary: #00bfc4;
+            --color-primary-strong: #f8766d;
+            --color-secondary-strong: #00bfc4;
         }
 
         body.theme-light nav {
@@ -96,7 +107,7 @@
         }
 
         body.theme-light #projects {
-            background-color: #edf2ff;
+            background-color: #ffffff;
         }
 
         body.theme-light .glass-panel {
@@ -135,6 +146,17 @@
             color: var(--text);
         }
 
+        .btn-hero {
+            background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary) 25%, var(--color-secondary) 75%, var(--color-secondary) 100%);
+            color: #0f172a !important;
+        }
+
+        /* Ensure same gradient in light mode */
+        body.theme-light .btn-hero {
+            background: linear-gradient(120deg, var(--color-primary-strong) 0%, var(--color-primary-strong) 25%, var(--color-secondary-strong) 75%, var(--color-secondary-strong) 100%);
+            color: #ffffff !important;
+        }
+
         body.theme-light .lang-switch {
             background: #e2e8f0;
             border-color: #cbd5e1;
@@ -157,33 +179,53 @@
         }
 
         body.theme-light .nav-menu-panel {
-            background: #ffffff;
+            background: transparent;
             color: #0f172a;
-            border-color: #cbd5e1;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+            border-color: transparent;
+            box-shadow: none;
         }
 
         /* Buttons contrast in light mode */
         body.theme-light .btn-outline {
             color: #0f172a !important;
             background-color: rgba(255, 255, 255, 0.9);
-            border-color: #0ea5e9;
+            border-color: var(--color-primary);
         }
 
         body.theme-light .btn-outline i {
             color: #0f172a;
         }
 
+        /* LinkedIn brand button */
+        .btn-linkedin {
+            color: #ffffff !important;
+            border-color: var(--color-primary) !important;
+        }
+
+        .btn-linkedin i {
+            color: #ffffff !important;
+        }
+
+        body.theme-light .btn-linkedin {
+            color: #0a66c2 !important;
+            border-color: var(--color-primary) !important;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.theme-light .btn-linkedin i {
+            color: #0a66c2 !important;
+        }
+
         /* Improve contrast of hero gradient text in light mode */
         body.theme-light .gradient-text {
-            background: linear-gradient(to right, #0c4a6e, #0284c7);
+            background: linear-gradient(120deg, var(--color-primary-strong) 0%, var(--color-primary-strong) 40%, var(--color-secondary-strong) 50%, var(--color-secondary-strong) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .gradient-text {
-            background: linear-gradient(to right, #ffffff, #0ea5e9);
+            background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary) 40%, var(--color-secondary) 50%, var(--color-secondary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -199,28 +241,81 @@
             opacity: 0.55;
             pointer-events: none;
         }
+
+        /* Darker teal/coral accents in light mode */
+        .text-brand-500 {
+            color: var(--color-primary) !important;
+        }
+
+        .text-brand-secondary {
+            color: var(--color-secondary) !important;
+        }
+
+        .bg-brand-600 {
+            background-color: var(--color-primary) !important;
+            border-color: var(--color-primary) !important;
+        }
+
+        .border-brand-600 {
+            border-color: var(--color-primary) !important;
+        }
+
+        /* Reusable Project Button */
+        .btn-project {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--color-secondary);
+            color: #ffffff;
+            background: var(--color-secondary);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-project:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-project:focus-visible {
+            outline: 2px solid var(--color-secondary);
+            outline-offset: 2px;
+        }
+
+        /* Light mode adjustments for project button */
+        body.theme-light .btn-project {
+            background: var(--color-secondary-strong);
+            border-color: var(--color-secondary-strong);
+            color: #ffffff;
+        }
     </style>
 </head>
 
 <body class="antialiased selection:bg-brand-500 selection:text-white">
     <!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 w-full z-50 glass-panel h-16 flex items-center bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+    <nav
+        class="fixed top-0 left-0 right-0 w-full z-50 glass-panel h-16 flex items-center bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="flex items-center justify-between w-full">
                 <div class="flex items-center relative group">
                     <span title="Pedro C. · Data Science & Stats"
                         class="text-xl font-bold font-mono tracking-tighter hover:text-brand-300 transition-colors">
-                        &lt;PedroC/<span class="text-brand-500">S&amp;DS</span>&gt;
+                        &lt;PedroC/<span class="text-brand-500">DS</span><span class="text-brand-secondary">&amp;</span><span
+                            class="text-brand-500">S</span>&gt;
                     </span>
                     <div
                         class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-3 w-14 sm:w-20 bg-slate-900/90 border border-slate-700 shadow-xl rounded-xl p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        <img src="assets/img/PCDCN8bits.png" alt="PedroC retro avatar"
-                            class="w-full h-auto rounded-lg">
+                        <img src="assets/img/PCDCN8bits.png" alt="PedroC retro avatar" class="w-full h-auto rounded-lg">
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
-                <div id="nav-menu"
-                    class="nav-menu-panel hidden flex-col gap-4 bg-slate-900/95 rounded-2xl p-4 shadow-2xl absolute right-4 top-20 w-48 md:w-auto md:shadow-none md:bg-transparent md:p-0 md:flex md:flex-row md:items-center md:gap-6 md:gap-8 md:static md:rounded-none md:top-auto md:right-auto">
+                    <div id="nav-menu"
+                        class="nav-menu-panel hidden flex-col gap-4 bg-slate-900/95 rounded-2xl p-4 shadow-2xl absolute right-4 top-20 w-48 md:w-auto md:shadow-none md:bg-transparent md:p-0 md:flex md:flex-row md:items-center md:gap-6 md:gap-8 md:static md:rounded-none md:top-auto md:right-auto">
                         <div class="flex flex-col gap-3 md:flex-row md:items-baseline md:space-x-8 md:gap-0">
                             <a href="#hero"
                                 class="hover:text-brand-500 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -240,15 +335,18 @@
                         </div>
                     </div>
                     <div class="lang-switch flex items-center gap-2 text-sm px-2 py-1 rounded-full border shadow-sm">
-                        <button id="btn-es" class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                        <button id="btn-es"
+                            class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                             <img src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
                                 class="w-6 h-6 rounded-full">
                         </button>
-                        <button id="btn-en" class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                        <button id="btn-en"
+                            class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                             <img src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
                                 class="w-6 h-6 rounded-full">
                         </button>
-                        <button id="theme-toggle" class="lang-btn theme-btn flex items-center justify-center w-9 h-9 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                        <button id="theme-toggle"
+                            class="lang-btn theme-btn flex items-center justify-center w-9 h-9 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                             <i class="fa-solid fa-moon"></i>
                         </button>
                     </div>
@@ -262,36 +360,41 @@
     </nav>
 
     <!-- Hero Section -->
-<section id="hero" class="relative min-h-[80vh] md:min-h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-28 pb-16 md:pb-20">
-    <canvas id="hero-canvas"></canvas>
-    <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full relative z-10 grid md:grid-cols-12 gap-8 items-center">
-        <div class="md:col-span-7 space-y-6">
-            <div class="text-brand-500 font-mono text-sm tracking-widest uppercase" data-i18n="hero_greeting">HELLO, I'M PEDRO</div>
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-                <span class="gradient-text block" data-i18n="hero_title_1">Data Scientist & Statistician</span>
-            </h1>
-            <p class="max-w-2xl text-lg md:text-xl text-slate-300" data-i18n="hero_subtitle">
-                Data Worker who transforms complex data into clear, actionable insights through visualization, modeling, and
-                evidence-based storytelling. I am passionate about using data to understand people, systems, and real-world
-                challenges. My goal is to make insights accessible, meaningful, and useful for better decision-making.
-            </p>
-            <div class="flex flex-wrap gap-3">
-                <a href="#projects"
-                    class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all"
-                    data-i18n="btn_case_studies">View projects</a>
-                <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank"
-                    class="btn-outline inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold gap-2 hover:bg-cyan-300/10 transition-all"
-                    data-i18n="btn_linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="#contact"
-                    class="btn-outline inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold hover:bg-cyan-300/10 transition-all"
-                    data-i18n="btn_talk">Contact me</a>
+    <section id="hero"
+        class="relative min-h-[80vh] md:min-h-screen flex items-start md:items-center overflow-hidden pt-24 md:pt-28 pb-16 md:pb-20">
+        <canvas id="hero-canvas"></canvas>
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 w-full relative z-10 grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <div class="text-brand-500 font-mono text-sm font-bold tracking-widest uppercase"
+                    data-i18n="hero_greeting">HELLO, I'M PEDRO</div>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
+                    <span class="gradient-text block" data-i18n="hero_title_1">Data Scientist & Statistician</span>
+                </h1>
+                <p class="max-w-2xl text-lg md:text-xl text-slate-300" data-i18n="hero_subtitle">
+                    Data Worker who transforms complex data into clear, actionable insights through visualization,
+                    modeling, and
+                    evidence-based storytelling. I am passionate about using data to understand people, systems, and
+                    real-world
+                    challenges. My goal is to make insights accessible, meaningful, and useful for better
+                    decision-making.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#projects"
+                        class="inline-flex items-center justify-center px-7 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all btn-hero"
+                        data-i18n="btn_case_studies">View projects</a>
+                    <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank"
+                        class="btn-outline btn-linkedin inline-flex items-center justify-center px-7 py-3 rounded-full border-2 text-white font-semibold gap-2 hover:bg-cyan-300/10 transition-all"
+                        data-i18n="btn_linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="#contact"
+                        class="btn-outline inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold hover:bg-cyan-300/10 transition-all"
+                        data-i18n="btn_talk">Contact me</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="absolute inset-x-0 bottom-10 flex justify-center">
-        <i class="fa-solid fa-chevron-down text-slate-500 text-xl"></i>
-    </div>
-</section>
+        <div class="absolute inset-x-0 bottom-10 flex justify-center">
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xl"></i>
+        </div>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="py-20">
@@ -303,50 +406,85 @@
                         <div>
                             <div class="text-sm font-semibold text-slate-200 mb-2">Business & Metrics</div>
                             <ul class="space-y-1 font-mono text-sm text-slate-400">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-clipboard-check text-teal-300"></i> <span data-i18n="skill_biz_interp">Business Problem Interpretation, Metric Design</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-vials text-amber-300"></i> <span data-i18n="skill_survey_impact">Survey Design, Program Impact Evaluation</span></li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fa-solid fa-clipboard-check text-teal-300"></i> <span
+                                        data-i18n="skill_biz_interp">Business Problem Interpretation, Metric
+                                        Design</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-vials text-amber-300"></i>
+                                    <span data-i18n="skill_survey_impact">Survey Design, Program Impact
+                                        Evaluation</span>
+                                </li>
                             </ul>
                             <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">ML / Modeling</div>
                             <ul class="space-y-1 font-mono text-sm text-slate-400">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-brain text-purple-400"></i> <span data-i18n="skill_ml">Predictive Modeling, Machine Learning, Generative AI</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-diagram-project text-blue-300"></i> <span data-i18n="skill_multivariate">Multivariate Statistical Methods</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-brain text-purple-400"></i>
+                                    <span data-i18n="skill_ml">Predictive Modeling, Machine Learning, Generative
+                                        AI</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fa-solid fa-diagram-project text-blue-300"></i> <span
+                                        data-i18n="skill_multivariate">Multivariate Statistical Methods</span></li>
                             </ul>
                             <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">Languages</div>
                             <ul class="space-y-1 font-mono text-sm text-slate-400">
-                                <li class="flex items-center gap-2"><i class="fa-brands fa-python text-yellow-400"></i> <span data-i18n="skill_langs">Python, R, SQL, C, C++</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-brands fa-python text-yellow-400"></i>
+                                    <span data-i18n="skill_langs">Python, R, SQL, C, C++</span>
+                                </li>
                             </ul>
                         </div>
                         <div>
                             <div class="text-sm font-semibold text-slate-200 mb-2">Data & Ops</div>
                             <ul class="space-y-1 font-mono text-sm text-slate-400">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-gears text-cyan-300"></i> <span data-i18n="skill_data_ops">Data Pipelines, Automated Reporting</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-brands fa-docker text-blue-500"></i> <span data-i18n="skill_cloud">Azure, AWS, Docker</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-database text-green-400"></i> <span data-i18n="skill_spss">SPSS, SAS, Stata</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-gears text-cyan-300"></i>
+                                    <span data-i18n="skill_data_ops">Data Pipelines, Automated Reporting</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i class="fa-brands fa-docker text-blue-500"></i>
+                                    <span data-i18n="skill_cloud">Azure, AWS, Docker</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-database text-green-400"></i>
+                                    <span data-i18n="skill_spss">SPSS, SAS, Stata</span>
+                                </li>
                             </ul>
                             <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">Visualization & Geo</div>
                             <ul class="space-y-1 font-mono text-sm text-slate-400">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-orange-400"></i> <span data-i18n="skill_story_viz">Analytical Storytelling, Data Visualization</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-pink-300"></i> <span data-i18n="skill_bi">Power BI, Google Data Studio</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-location-crosshairs text-emerald-300"></i> <span data-i18n="skill_geo">QGIS, ArcGIS</span></li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fa-solid fa-chart-line text-orange-400"></i> <span
+                                        data-i18n="skill_story_viz">Analytical Storytelling, Data Visualization</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-pink-300"></i>
+                                    <span data-i18n="skill_bi">Power BI, Google Data Studio</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fa-solid fa-location-crosshairs text-emerald-300"></i> <span
+                                        data-i18n="skill_geo">QGIS, ArcGIS</span></li>
                             </ul>
                             <div class="text-sm font-semibold text-slate-200 mt-3 mb-2">Tools</div>
                             <ul class="space-y-1 font-mono text-sm text-slate-400">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-terminal text-slate-200"></i> <span data-i18n="skill_tools_ide">VSCode, Positron, Colab, JupyterLab</span></li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-file-lines text-slate-300"></i> <span data-i18n="skill_tools_office">Microsoft Office, OpenOffice</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-terminal text-slate-200"></i>
+                                    <span data-i18n="skill_tools_ide">VSCode, Positron, Colab, JupyterLab</span>
+                                </li>
+                                <li class="flex items-center gap-2"><i
+                                        class="fa-solid fa-file-lines text-slate-300"></i> <span
+                                        data-i18n="skill_tools_office">Microsoft Office, OpenOffice</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                        <span class="text-brand-500 font-mono text-2xl">01.</span> <span data-i18n="about_title">Sobre Mi</span>
+                        <span class="text-brand-500 font-mono text-2xl">01.</span> <span data-i18n="about_title">Sobre
+                            Mi</span>
                     </h2>
                     <div class="prose prose-invert text-slate-300">
                         <p class="mb-4" data-i18n="about_p1">
-                            Data Scientist and Statistician with 12+ years of experience leveraging large datasets to generate clear, actionable insights that support strategic decision-making.
+                            Data Scientist and Statistician with 12+ years of experience leveraging large datasets to
+                            generate clear, actionable insights that support strategic decision-making.
                         </p>
                         <p class="mb-6" data-i18n="about_p2">
-                            Strong expertise in statistical sampling, multivariate analysis, machine learning, predictive modeling, big data, and data visualization, with advanced command of modern analytical tools and the adaptability to work effectively across industries and analytical environments.
+                            Strong expertise in statistical sampling, multivariate analysis, machine learning,
+                            predictive modeling, big data, and data visualization, with advanced command of modern
+                            analytical tools and the adaptability to work effectively across industries and analytical
+                            environments.
                         </p>
                     </div>
                 </div>
@@ -357,119 +495,112 @@
     <section id="projects" class="py-20 bg-slate-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
-                <span class="text-brand-500 font-mono text-2xl">02.</span> <span data-i18n="projects_title">Portfolio</span>
+                <span class="text-brand-500 font-mono text-2xl">02.</span> <span
+                    data-i18n="projects_title">Portfolio</span>
             </h2>
             <div class="relative">
                 <div class="overflow-x-auto pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
                     <div class="flex gap-6 min-w-full">
 
-                          <!-- Project Card 1: Anuario -->
-                          <div
-                              class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
+                        <!-- Project Card 1: Anuario -->
+                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
-                              <a href="projects/anuario-movilidad.html"
-                                  class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
-                                  <img src="assets/img/Bogota_trafic_Accidents.png" alt="Bogota Road Safety preview"
-                                      class="w-full h-full object-cover">
-                              </a>
-                              <div class="p-5 space-y-3">
-                                  <div class="flex items-start justify-between gap-2">
-                                      <h3 class="text-lg font-bold text-white" data-i18n="proj_2_title">Data Science &
-                          Viz: Bogotá Road Casualty Yearbook (2017–2022)</h3>
-                                  </div>
-                                  <p class="text-slate-300 text-sm" data-i18n="proj_2_desc">
-                                      Designed indicators and ggplot2 visuals for Bogotá’s 2017–2022 road casualty
-                          yearbooks, enabling Vision Zero actions.
-                                  </p>
-                                  <div class="flex flex-wrap gap-2 text-xs font-mono text-purple-200">
-                                      <span class="bg-purple-900/50 px-2 py-1 rounded">Road Safety</span>
-                                      <span class="bg-purple-900/50 px-2 py-1 rounded">Data Analysis</span>
-                                      <span class="bg-purple-900/50 px-2 py-1 rounded">Public Health</span>
-                                      <span class="bg-purple-900/50 px-2 py-1 rounded">Policy</span>
-                                      <span class="bg-purple-900/50 px-2 py-1 rounded">R</span>
-                                      <span class="bg-purple-900/50 px-2 py-1 rounded">ggplot2</span>
-                                  </div>
-                                  <div class="flex gap-3">
-                                      <a href="projects/anuario-movilidad.html"
-                                          class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs
-                          hover:bg-gray-200 transition">View
-                                          Project</a>
-                                  </div>
-                              </div>
-                          </div>
+                            <a href="projects/anuario-movilidad.html"
+                                class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
+                                <img src="assets/img/Bogota_trafic_Accidents.png" alt="Bogota Road Safety preview"
+                                    class="w-full h-full object-cover">
+                            </a>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white" data-i18n="proj_2_title">Data Science &
+                                        Viz: Bogotá Road Casualty Yearbook (2017–2022)</h3>
+                                </div>
+                                <p class="text-slate-800 md:text-slate-300 text-sm" data-i18n="proj_2_desc">
+                                    Designed indicators and ggplot2 visuals for Bogotá’s 2017–2022 road casualty
+                                    yearbooks, enabling Vision Zero actions.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-purple-200">
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">Road Safety</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">Data Analysis</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">Public Health</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">Policy</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">R</span>
+                                    <span class="bg-purple-900/50 px-2 py-1 rounded">ggplot2</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="projects/anuario-movilidad.html" class="btn-project">View
+                                        Project</a>
+                                </div>
+                            </div>
+                        </div>
 
-                          <!-- Project Card 2: ClusterCarac -->
-                          <div
-                              class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
+                        <!-- Project Card 2: ClusterCarac -->
+                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
-                              <a href="projects/cluster-carac.html"
-                                  class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
-                                  <img src="assets/img/ClusterCarac_IA001.png" alt="ClusterCarac preview"
-                                      class="w-full h-full object-cover">
-                              </a>
-                              <div class="p-5 space-y-3">
-                                  <div class="flex items-start justify-between gap-2">
-                                      <h3 class="text-lg font-bold text-white" data-i18n="proj_cluster_title">
-                          ClusterCarac: Clusters &amp; Classifications</h3>
-                                  </div>
-                                  <p class="text-slate-300 text-sm" data-i18n="proj_cluster_desc">
-                                      R package that surfaces what defines each cluster or category; retro-inspired
-                          characterization preview.
-                                  </p>
-                                  <div class="flex flex-wrap gap-2 text-xs font-mono text-brand-200">
-                                      <span class="bg-brand-900/50 px-2 py-1 rounded">Social studies</span>
-                                      <span class="bg-brand-900/50 px-2 py-1 rounded">Market research</span>
-                                      <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
-                                      <span class="bg-brand-900/50 px-2 py-1 rounded">FactoClass</span>
-                                      <span class="bg-brand-900/50 px-2 py-1 rounded">EDA</span>
-                                      <span class="bg-brand-900/50 px-2 py-1 rounded">Characterization</span>
-                                  </div>
-                                  <div class="flex gap-3">
-                                      <a href="projects/cluster-carac.html"
-                                          class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs
-                          hover:bg-gray-200 transition">View
-                                          Project</a>
-                                  </div>
-                              </div>
-                          </div>
+                            <a href="projects/cluster-carac.html"
+                                class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
+                                <img src="assets/img/ClusterCarac_IA001.png" alt="ClusterCarac preview"
+                                    class="w-full h-full object-cover">
+                            </a>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white" data-i18n="proj_cluster_title">
+                                        ClusterCarac: Clusters &amp; Classifications</h3>
+                                </div>
+                                <p class="text-slate-300 text-sm" data-i18n="proj_cluster_desc">
+                                    R package that surfaces what defines each cluster or category; retro-inspired
+                                    characterization preview.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-brand-200">
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">Social studies</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">Market research</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">FactoClass</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">EDA</span>
+                                    <span class="bg-brand-900/50 px-2 py-1 rounded">Characterization</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="projects/cluster-carac.html" class="btn-project">View
+                                        Project</a>
+                                </div>
+                            </div>
+                        </div>
 
-                          <!-- Project Card 3: FactoClass -->
-                          <div
-                              class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
+                        <!-- Project Card 3: FactoClass -->
+                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
-                              <a href="projects/factoclass.html"
-                                  class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
-                                  <img src="assets/img/FactoClass_template.png" alt="FactoClass preview"
-                                      class="w-full h-full object-cover">
-                              </a>
-                              <div class="p-5 space-y-3">
-                                  <div class="flex items-start justify-between gap-2">
-                                      <h3 class="text-lg font-bold text-white" data-i18n="proj_factoclass_title">
-                          FactoClass: letting data reveal their own structure</h3>
-                                  </div>
-                                  <p class="text-slate-300 text-sm" data-i18n="proj_factoclass_desc">
-                                      Early Statistics work: factorial + clustering pipeline (Ward/K-means) inspired by Lebart,
-                          guided by Campo Elías Pardo.
-                                  </p>
-                                  <div class="flex flex-wrap gap-2 text-xs font-mono text-emerald-100">
-                                      <span class="bg-emerald-900/60 px-2 py-1 rounded">Statistics</span>
-                                      <span class="bg-emerald-900/60 px-2 py-1 rounded">DataScience</span>
-                                      <span class="bg-emerald-900/60 px-2 py-1 rounded">Multivariate Analysis</span>
-                                      <span class="bg-emerald-900/60 px-2 py-1 rounded">Clustering</span>
-                                      <span class="bg-emerald-900/60 px-2 py-1 rounded">RStats</span>
-                                      <span class="bg-emerald-900/60 px-2 py-1 rounded">Applied Statistics</span>
-                                  </div>
-                                  <div class="flex gap-3">
-                                      <a href="projects/factoclass.html"
-                                          class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-xs
-                          hover:bg-gray-200 transition">View
-                                          Project</a>
-                                  </div>
-                              </div>
-                          </div>
-</div>
+                            <a href="projects/factoclass.html"
+                                class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
+                                <img src="assets/img/FactoClass_template.png" alt="FactoClass preview"
+                                    class="w-full h-full object-cover">
+                            </a>
+                            <div class="p-5 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-lg font-bold text-white" data-i18n="proj_factoclass_title">
+                                        FactoClass: letting data reveal their own structure</h3>
+                                </div>
+                                <p class="text-slate-300 text-sm" data-i18n="proj_factoclass_desc">
+                                    Early Statistics work: factorial + clustering pipeline (Ward/K-means) inspired by
+                                    Lebart,
+                                    guided by Campo Elías Pardo.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono text-emerald-100">
+                                    <span class="bg-emerald-900/60 px-2 py-1 rounded">Statistics</span>
+                                    <span class="bg-emerald-900/60 px-2 py-1 rounded">DataScience</span>
+                                    <span class="bg-emerald-900/60 px-2 py-1 rounded">Multivariate Analysis</span>
+                                    <span class="bg-emerald-900/60 px-2 py-1 rounded">Clustering</span>
+                                    <span class="bg-emerald-900/60 px-2 py-1 rounded">RStats</span>
+                                    <span class="bg-emerald-900/60 px-2 py-1 rounded">Applied Statistics</span>
+                                </div>
+                                <div class="flex gap-3">
+                                    <a href="projects/factoclass.html" class="btn-project">View
+                                        Project</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </section>
 
     <!-- Viz Lab Section (commented out until visualizations are ready)
@@ -485,12 +616,12 @@
                 class="relative w-full h-80 glass-panel rounded-2xl border border-dashed border-slate-600 flex items-center justify-center">
                 <p class="text-slate-500 font-mono animate-pulse">&lt; Interactive_Simulation_Placeholder /&gt;</p>
                 <!-- D3 Animation to be added here -->
-            </div>
-        </div>
+    </div>
+    </div>
     </section>
     -->
 
-        <!-- Footer / Contact -->
+    <!-- Footer / Contact -->
     <footer id="contact" class="py-20 border-t border-slate-800 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6" data-i18n="footer_title">Ready to Collaborate?</h2>
         <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10" data-i18n="footer_desc">
@@ -499,15 +630,17 @@
         </p>
         <div class="flex justify-center mb-12">
             <a href="mailto:pcdelcampon@gmail.com"
-                class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 text-slate-900 font-semibold text-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition"
+                class="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition btn-hero"
                 data-i18n="footer_cta">Say Hello</a>
         </div>
         <div class="flex justify-center gap-8 text-3xl text-slate-400">
-            <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank" class="hover:text-white"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank" class="hover:text-white"><i
+                    class="fa-brands fa-linkedin"></i></a>
             <a href="https://github.com/pcdelcampon" target="_blank" class="hover:text-white"><i
                     class="fa-brands fa-github"></i></a>
         </div>
-        <div class="mt-10 text-sm text-slate-600 font-mono" data-i18n="footer_copy">&copy; 2024 Pedro C. Del Campo. Gracias a VibeCoding por hacer este portafolio posible.</div>
+        <div class="mt-10 text-sm text-slate-600 font-mono" data-i18n="footer_copy">&copy; 2024 Pedro C. Del Campo.
+            Gracias a VibeCoding por hacer este portafolio posible.</div>
     </footer>
 
     <!-- JS Scripts -->

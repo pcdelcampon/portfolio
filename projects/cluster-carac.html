@@ -28,11 +28,11 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
+                            50: '#e0f8f9',
+                            100: '#b8eff1',
+                            500: '#00bfc4',
+                            600: '#009aa3',
+                            900: '#006f75',
                         },
                         dark: {
                             bg: '#0f172a',
@@ -51,6 +51,11 @@
             --panel: rgba(30, 41, 59, 0.9);
             --border: rgba(255, 255, 255, 0.08);
             --nav: rgba(15, 23, 42, 0.95);
+            /* Brand palette (dark mode) */
+            --color-primary: #00bfc4;
+            --color-secondary: #f8766d;
+            --color-primary-strong: #00bfc4;
+            --color-secondary-strong: #f8766d;
         }
 
         body {
@@ -71,11 +76,16 @@
         }
 
         body.theme-light {
-            --bg: #f8fafc;
+            --bg: #ffffff;
             --text: #0f172a;
             --panel: rgba(255, 255, 255, 0.9);
             --border: rgba(15, 23, 42, 0.08);
             --nav: rgba(255, 255, 255, 0.95);
+            /* Light mode: swap order (coral then cyan) */
+            --color-primary: #f8766d;
+            --color-secondary: #00bfc4;
+            --color-primary-strong: #f8766d;
+            --color-secondary-strong: #00bfc4;
         }
 
         body.theme-light .glass-panel {
@@ -132,6 +142,55 @@
         body.theme-light .text-white {
             color: #0f172a !important;
         }
+
+        /* Darker teal/coral accents in light mode */
+        body.theme-light .text-brand-500 {
+            color: #00949a !important;
+        }
+
+        body.theme-light .bg-brand-600 {
+            background-color: #00949a !important;
+        }
+
+        body.theme-light .border-brand-600 {
+            border-color: #00949a !important;
+        }
+
+        .body-quote {
+            color: #e2e8f0;
+        }
+
+        body.theme-light .body-quote {
+            color: #0f172a;
+        }
+
+        /* Brand helpers */
+        .text-brand-500 {
+            color: var(--color-primary) !important;
+        }
+
+        .text-brand-secondary {
+            color: var(--color-secondary) !important;
+            font-weight: 700;
+        }
+
+        /* Tag pills */
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--color-secondary);
+            color: #ffffff;
+        }
+
+        body.theme-light .tag-badge {
+            background: var(--color-secondary-strong);
+            color: #ffffff;
+        }
     </style>
 </head>
 
@@ -167,7 +226,7 @@
     <main class="pt-24 pb-16 min-h-screen px-4">
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div class="space-y-6">
-                <div class="text-sm font-mono text-brand-500">projects/cluster-carac</div>
+                <div class="text-sm font-mono text-brand-secondary">projects/cluster-carac</div>
 
                 <div data-lang="en" class="space-y-3">
                     <h1 class="text-3xl md:text-4xl font-bold text-white">Uncover the unique profile of every data
@@ -193,19 +252,19 @@
                 </div>
 
                 <div data-lang="en" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100">
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">Characterization</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">EDA</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">Segmentation</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">FactoClass</span>
+                    <span class="tag-badge">R</span>
+                    <span class="tag-badge">Characterization</span>
+                    <span class="tag-badge">EDA</span>
+                    <span class="tag-badge">Segmentation</span>
+                    <span class="tag-badge">FactoClass</span>
                 </div>
 
                 <div data-lang="es" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100 hidden">
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">Caracterización</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">EDA</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">Segmentación</span>
-                    <span class="bg-brand-900/50 px-2 py-1 rounded">FactoClass</span>
+                    <span class="tag-badge">R</span>
+                    <span class="tag-badge">Caracterización</span>
+                    <span class="tag-badge">EDA</span>
+                    <span class="tag-badge">Segmentación</span>
+                    <span class="tag-badge">FactoClass</span>
                 </div>
 
                 <div class="flex flex-wrap gap-3">
@@ -256,7 +315,7 @@
 
                 <section class="space-y-3">
                     <h3 class="text-xl font-semibold text-white">In one sentence</h3>
-                    <blockquote class="border-l-4 border-brand-500 pl-4 text-slate-100 font-semibold">
+                    <blockquote class="border-l-4 border-brand-500 pl-4 font-semibold body-quote">
                         ClusterCarac turns groups into stories—showing what defines them, what sets them apart, and what
                         truly matters.
                     </blockquote>
@@ -311,7 +370,7 @@
 
                 <section class="space-y-3">
                     <h3 class="text-xl font-semibold text-white">En una frase</h3>
-                    <blockquote class="border-l-4 border-brand-500 pl-4 text-slate-100 font-semibold">
+                    <blockquote class="border-l-4 border-brand-500 pl-4 font-semibold body-quote">
                         ClusterCarac convierte los grupos en historias: muestra qué los define, qué los diferencia y qué
                         importa de verdad.
                     </blockquote>

@@ -83,7 +83,9 @@ function initHeroAnimation() {
 
         draw() {
             const lightMode = document.body.classList.contains('theme-light');
-            ctx.fillStyle = lightMode ? 'rgba(14, 165, 233, 0.35)' : 'rgba(14, 165, 233, 0.5)'; // Softer in light mode
+            const darkColor = 'rgba(0, 191, 196, 0.5)'; // Teal
+            const lightColor = 'rgba(248, 118, 109, 0.38)'; // Coral for light mode
+            ctx.fillStyle = lightMode ? lightColor : darkColor;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -114,7 +116,8 @@ function initHeroAnimation() {
                     ctx.beginPath();
                     const baseAlpha = 1 - distance / connectionDistance;
                     const alpha = (document.body.classList.contains('theme-light')) ? baseAlpha * 0.4 : baseAlpha;
-                    ctx.strokeStyle = `rgba(14, 165, 233, ${alpha})`;
+                    const lineColor = document.body.classList.contains('theme-light') ? '248, 118, 109' : '0, 191, 196';
+                    ctx.strokeStyle = `rgba(${lineColor}, ${alpha})`;
                     ctx.lineWidth = 1;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
