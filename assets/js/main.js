@@ -82,10 +82,9 @@ function initHeroAnimation() {
         }
 
         draw() {
-            const lightMode = document.body.classList.contains('theme-light');
             const darkColor = 'rgba(0, 191, 196, 0.5)'; // Teal
-            const lightColor = 'rgba(248, 118, 109, 0.38)'; // Coral for light mode
-            ctx.fillStyle = lightMode ? lightColor : darkColor;
+            const lightColor = 'rgba(248, 118, 109, 0.5)'; // Coral for light mode (same alpha as dark)
+            ctx.fillStyle = document.body.classList.contains('theme-light') ? lightColor : darkColor;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -217,9 +216,8 @@ function initThemeToggle() {
         }
     };
 
-    const saved = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    setTheme(saved ? saved : (prefersLight ? 'light' : 'dark'));
+    // Always start in dark mode
+    setTheme('dark');
 
     toggle.addEventListener('click', () => {
         const isLight = document.body.classList.contains('theme-light');
