@@ -82,7 +82,8 @@ function initHeroAnimation() {
         }
 
         draw() {
-            ctx.fillStyle = 'rgba(14, 165, 233, 0.5)'; // Brand color
+            const lightMode = document.body.classList.contains('theme-light');
+            ctx.fillStyle = lightMode ? 'rgba(14, 165, 233, 0.25)' : 'rgba(14, 165, 233, 0.5)'; // Softer in light mode
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -111,7 +112,9 @@ function initHeroAnimation() {
 
                 if (distance < connectionDistance) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(14, 165, 233, ${1 - distance / connectionDistance})`;
+                    const baseAlpha = 1 - distance / connectionDistance;
+                    const alpha = (document.body.classList.contains('theme-light')) ? baseAlpha * 0.4 : baseAlpha;
+                    ctx.strokeStyle = `rgba(14, 165, 233, ${alpha})`;
                     ctx.lineWidth = 1;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
