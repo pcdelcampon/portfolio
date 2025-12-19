@@ -44,37 +44,118 @@
         }
     </script>
     <style>
+        :root {
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --panel: rgba(30, 41, 59, 0.9);
+            --border: rgba(255, 255, 255, 0.08);
+            --nav: rgba(15, 23, 42, 0.95);
+        }
+
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg);
+            color: var(--text);
         }
 
         .glass-panel {
-            background: rgba(30, 41, 59, 0.9);
+            background: var(--panel);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        .nav-surface {
+            background-color: var(--nav);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        body.theme-light {
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --panel: rgba(255, 255, 255, 0.9);
+            --border: rgba(15, 23, 42, 0.08);
+            --nav: rgba(255, 255, 255, 0.95);
+        }
+
+        body.theme-light .glass-panel {
+            background: var(--panel);
+            border-color: var(--border);
+        }
+
+        body.theme-light .nav-surface {
+            background-color: var(--nav);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        body.theme-light .text-slate-300 {
+            color: #1f2937 !important;
+        }
+
+        body.theme-light .text-slate-400 {
+            color: #374151 !important;
+        }
+
+        body.theme-light .text-slate-200 {
+            color: #111827 !important;
+        }
+
+        .lang-switch {
+            background: var(--panel);
+            border-color: var(--border);
+        }
+
+        .lang-btn {
+            background: var(--panel);
+            border: 1px solid var(--border);
+        }
+
+        .theme-btn {
+            color: var(--text);
+        }
+
+        body.theme-light .lang-switch {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        body.theme-light .lang-btn {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        body.theme-light .theme-btn {
+            color: #0f172a;
+        }
+
+        body.theme-light .text-white {
+            color: #0f172a !important;
         }
     </style>
 </head>
 
 <body class="antialiased selection:bg-brand-500 selection:text-white">
     <nav
-        class="fixed top-0 left-0 right-0 w-full z-50 glass-panel h-16 flex items-center bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+        class="fixed top-0 left-0 right-0 w-full z-50 glass-panel nav-surface h-16 flex items-center backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 w-full flex items-center justify-between">
             <a href="../index.html#projects"
                 class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm font-semibold"
                 data-i18n="project_back">
                 <i class="fa-solid fa-arrow-left"></i>
-                <span>Back to portfolio</span>
+                <span><< Back to portfolio</span>
             </a>
-            <div class="flex items-center gap-3 bg-slate-800/80 px-2 py-1 rounded-full border border-slate-700">
-                <button id="btn-es">
+            <div class="lang-switch flex items-center gap-2 text-sm px-2 py-1 rounded-full border shadow-sm">
+                <button id="btn-es" class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                     <img src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
                         class="w-6 h-6 rounded-full">
                 </button>
-                <button id="btn-en">
+                <button id="btn-en" class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                     <img src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
                         class="w-6 h-6 rounded-full">
+                </button>
+                <button id="theme-toggle"
+                    class="lang-btn theme-btn flex items-center justify-center w-9 h-9 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                    <i class="fa-solid fa-moon"></i>
                 </button>
             </div>
         </div>

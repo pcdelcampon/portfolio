@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initSkillChart();
     initMobileNav();
+    initThemeToggle();
 });
 
 /* =========================================
@@ -181,5 +182,41 @@ function initMobileNav() {
     // Close menu after selecting any link or button in the nav (mobile)
     menu.querySelectorAll('a, button').forEach(item => {
         item.addEventListener('click', closeMenu);
+    });
+}
+
+/* =========================================
+   5. Theme Toggle (Light/Dark)
+   ========================================= */
+function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    const icon = toggle.querySelector('i');
+    const setTheme = (mode) => {
+        if (mode === 'light') {
+            document.body.classList.add('theme-light');
+            if (icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.classList.remove('theme-light');
+            if (icon) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            localStorage.setItem('theme', 'dark');
+        }
+    };
+
+    const saved = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    setTheme(saved ? saved : (prefersLight ? 'light' : 'dark'));
+
+    toggle.addEventListener('click', () => {
+        const isLight = document.body.classList.contains('theme-light');
+        setTheme(isLight ? 'dark' : 'light');
     });
 }

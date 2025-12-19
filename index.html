@@ -60,15 +60,112 @@
         }
     </script>
     <style>
+        :root {
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --card: rgba(30, 41, 59, 0.7);
+            --panel: rgba(30, 41, 59, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --nav: rgba(15, 23, 42, 0.95);
+        }
+
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg);
+            color: var(--text);
         }
 
         .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
+            background: var(--panel);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        body.theme-light {
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --card: rgba(255, 255, 255, 0.9);
+            --panel: rgba(255, 255, 255, 0.9);
+            --border: rgba(15, 23, 42, 0.08);
+            --nav: rgba(255, 255, 255, 0.95);
+        }
+
+        body.theme-light nav {
+            background-color: var(--nav) !important;
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        body.theme-light #projects {
+            background-color: #edf2ff;
+        }
+
+        body.theme-light .glass-panel {
+            background: var(--panel);
+            border-color: var(--border);
+        }
+
+        body.theme-light .text-slate-300 {
+            color: #1f2937 !important;
+        }
+
+        body.theme-light .text-slate-400 {
+            color: #374151 !important;
+        }
+
+        body.theme-light .text-slate-200 {
+            color: #111827 !important;
+        }
+
+        /* Project cards in light mode */
+        body.theme-light #projects h3 {
+            color: #0f172a !important;
+        }
+
+        .lang-switch {
+            background: var(--panel);
+            border-color: var(--border);
+        }
+
+        .lang-btn {
+            background: var(--panel);
+            border: 1px solid var(--border);
+        }
+
+        .theme-btn {
+            color: var(--text);
+        }
+
+        body.theme-light .lang-switch {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        body.theme-light .lang-btn {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        body.theme-light .theme-btn {
+            color: #0f172a;
+        }
+
+        /* Buttons contrast in light mode */
+        body.theme-light .btn-outline {
+            color: #0f172a !important;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-color: #0ea5e9;
+        }
+
+        body.theme-light .btn-outline i {
+            color: #0f172a;
+        }
+
+        /* Improve contrast of hero gradient text in light mode */
+        body.theme-light .gradient-text {
+            background: linear-gradient(to right, #0c4a6e, #0284c7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .gradient-text {
@@ -128,15 +225,17 @@
                                 data-i18n="nav_contact">Contacto</a>
                         </div>
                     </div>
-                    <div
-                        class="flex items-center gap-2 text-sm bg-slate-800/90 px-2 py-1 rounded-full border border-slate-700 shadow-sm">
-                        <button id="btn-es" class="flex items-center px-2 py-1 bg-slate-800/70 border border-slate-600/70 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                    <div class="lang-switch flex items-center gap-2 text-sm px-2 py-1 rounded-full border shadow-sm">
+                        <button id="btn-es" class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                             <img src="https://flagcdn.com/w40/es.png" alt="Español" title="Español"
                                 class="w-6 h-6 rounded-full">
                         </button>
-                        <button id="btn-en" class="flex items-center px-2 py-1 bg-slate-800/70 border border-slate-600/70 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                        <button id="btn-en" class="lang-btn flex items-center px-2 py-1 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
                             <img src="https://flagcdn.com/w40/gb.png" alt="English" title="English"
                                 class="w-6 h-6 rounded-full">
+                        </button>
+                        <button id="theme-toggle" class="lang-btn theme-btn flex items-center justify-center w-9 h-9 rounded-full shadow-sm transition-all hover:scale-105 hover:ring-2 hover:ring-cyan-400/60">
+                            <i class="fa-solid fa-moon"></i>
                         </button>
                     </div>
                     <button id="nav-toggle"
@@ -167,10 +266,10 @@
                     class="inline-flex items-center justify-center px-7 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all"
                     data-i18n="btn_case_studies">View projects</a>
                 <a href="https://www.linkedin.com/in/pcdelcampon" target="_blank"
-                    class="inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold gap-2 hover:bg-cyan-300/10 transition-all"
+                    class="btn-outline inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold gap-2 hover:bg-cyan-300/10 transition-all"
                     data-i18n="btn_linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                 <a href="#contact"
-                    class="inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold hover:bg-cyan-300/10 transition-all"
+                    class="btn-outline inline-flex items-center justify-center px-7 py-3 rounded-full border-2 border-cyan-300 text-white font-semibold hover:bg-cyan-300/10 transition-all"
                     data-i18n="btn_talk">Contact me</a>
             </div>
         </div>
