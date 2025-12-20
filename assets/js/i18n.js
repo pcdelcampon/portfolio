@@ -171,7 +171,7 @@ function setLanguage(lang) {
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Restore preference if present, otherwise default to English
-    const savedLang = localStorage.getItem('preferred_language');
+    const savedLang = window.__PREFERRED_LANG || localStorage.getItem('preferred_language');
     setLanguage(savedLang || 'en');
 
     // Add event listeners to toggles

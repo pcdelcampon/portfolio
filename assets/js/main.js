@@ -21,6 +21,8 @@ function initHeroAnimation() {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
+    let animationId = null;
+    let running = true;
 
     // Configuration
     const particleCount = 60;
@@ -99,6 +101,7 @@ function initHeroAnimation() {
 
     // Animation Loop
     function animate() {
+        if (!running) return;
         ctx.clearRect(0, 0, width, height);
 
         for (let i = 0; i < particles.length; i++) {
@@ -124,8 +127,29 @@ function initHeroAnimation() {
                 }
             }
         }
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
     }
+    const start = () => {
+        if (running) return;
+        running = true;
+        animationId = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+        running = false;
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    };
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stop();
+        } else {
+            start();
+        }
+    });
+
     animate();
 }
 
@@ -217,7 +241,7 @@ function initThemeToggle() {
     };
 
     // Restore theme preference; default to dark if none saved or no preference detected
-    const saved = localStorage.getItem('theme');
+    const saved = window.__PREFERRED_THEME || localStorage.getItem('theme');
     // Default to dark when no preference has been stored; otherwise respect saved
     setTheme(saved ? saved : 'dark');
 

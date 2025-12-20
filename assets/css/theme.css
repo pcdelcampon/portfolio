@@ -65,6 +65,15 @@ body.theme-light {
     color: var(--text);
 }
 
+.card-tags span {
+    color: #ffffff;
+}
+
+body.theme-light .card-tags span {
+    color: #0f172a;
+    filter: brightness(1.15) saturate(1.05);
+}
+
 body.theme-light .lang-switch {
     background: #e2e8f0;
     border-color: #cbd5e1;
@@ -136,6 +145,12 @@ body.theme-light .text-slate-400 {
 
 body.theme-light .text-slate-200 {
     color: #111827 !important;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 .btn-project {

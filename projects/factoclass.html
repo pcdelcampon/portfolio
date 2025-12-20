@@ -46,6 +46,24 @@
     
     <link rel="stylesheet" href="../assets/css/theme.css">
     <link rel="stylesheet" href="../assets/css/project-layout.css">
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme');
+            var lang = localStorage.getItem('preferred_language');
+            if (t === 'light') {
+                document.documentElement.classList.add('theme-light');
+                window.__PREFERRED_THEME = 'light';
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.body.classList.add('theme-light');
+                });
+            } else {
+                window.__PREFERRED_THEME = 'dark';
+            }
+            if (lang) {
+                window.__PREFERRED_LANG = lang;
+            }
+        })();
+    </script>
 </head>
 
 <body class="antialiased selection:bg-brand-500 selection:text-white">
