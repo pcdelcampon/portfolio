@@ -63,6 +63,24 @@ body.theme-light {
 
 .theme-btn {
     color: var(--text);
+    background: transparent;
+    box-shadow: none;
+}
+
+.theme-btn:hover,
+.theme-btn:focus-visible {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+/* Explicit fallbacks per theme for better browser support */
+body.theme-light .theme-btn:hover,
+body.theme-light .theme-btn:focus-visible {
+    box-shadow: 0 0 0 6px rgba(248, 118, 109, 0.35);
+}
+
+body:not(.theme-light) .theme-btn:hover,
+body:not(.theme-light) .theme-btn:focus-visible {
+    box-shadow: 0 0 0 6px rgba(0, 191, 196, 0.35);
 }
 
 .card-tags span {
