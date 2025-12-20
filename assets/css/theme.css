@@ -184,3 +184,118 @@ body.theme-light .btn-project {
     border-color: var(--color-secondary-strong);
     color: #ffffff;
 }
+
+/* --- Styles Migrated from index.html --- */
+
+body.theme-light nav {
+    background-color: var(--nav) !important;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+body.theme-light #projects {
+    background-color: #ffffff;
+}
+
+body.theme-light .glass-panel {
+    background: var(--panel);
+    border-color: var(--border);
+}
+
+body.theme-light #projects h3 {
+    color: #0f172a !important;
+}
+
+.btn-hero {
+    background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary) 25%, var(--color-secondary) 75%, var(--color-secondary) 100%);
+    color: #0f172a !important;
+}
+
+body.theme-light .btn-hero {
+    background: linear-gradient(120deg, var(--color-primary-strong) 0%, var(--color-primary-strong) 25%, var(--color-secondary-strong) 75%, var(--color-secondary-strong) 100%);
+    color: #ffffff !important;
+}
+
+.nav-menu-panel {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+body.theme-light .nav-menu-panel {
+    background: transparent;
+    color: #0f172a;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+body.theme-light .btn-outline {
+    color: #0f172a !important;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: var(--color-primary);
+}
+
+body.theme-light .btn-outline i {
+    color: #0f172a;
+}
+
+.btn-linkedin {
+    color: #ffffff !important;
+    border-color: var(--color-primary) !important;
+}
+
+.btn-linkedin i {
+    color: #ffffff !important;
+}
+
+body.theme-light .btn-linkedin {
+    color: #0a66c2 !important;
+    border-color: var(--color-primary) !important;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+body.theme-light .btn-linkedin i {
+    color: #0a66c2 !important;
+}
+
+body.theme-light .gradient-text {
+    background: linear-gradient(120deg, var(--color-primary-strong) 0%, var(--color-primary-strong) 40%, var(--color-secondary-strong) 50%, var(--color-secondary-strong) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-text {
+    background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary) 30%, var(--color-secondary) 40%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#hero-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.bg-brand-600 {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+.border-brand-600 {
+    border-color: var(--color-primary) !important;
+}
+
+.card-desc {
+    color: #cbd5e1;
+}
+
+body.theme-light .card-desc {
+    color: #1f2937;
+}

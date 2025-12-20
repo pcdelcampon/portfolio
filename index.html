@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Pedro C.</title>
     <link rel="icon" type="image/png" href="assets/img/PCDCN8bits.png?v=2">
     <link rel="shortcut icon" href="assets/img/PCDCN8bits.png?v=2">
@@ -29,9 +29,7 @@
     <link rel="stylesheet" href="assets/css/theme.css">
 
     <!-- Math & Viz Libraries -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- D3 and Katex removed for optimization -->
 
     <script>
         tailwind.config = {
@@ -61,248 +59,7 @@
         }
     </script>
     <style>
-        :root {
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --card: rgba(30, 41, 59, 0.7);
-            --panel: rgba(30, 41, 59, 0.7);
-            --border: rgba(255, 255, 255, 0.1);
-            --nav: rgba(15, 23, 42, 0.95);
-            /* Main Brand Colors (dark mode) */
-            --color-primary: #00bfc4;
-            --color-secondary: #f8766d;
-            --color-primary-strong: #00bfc4;
-            --color-secondary-strong: #f8766d;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-        }
-
-        .glass-panel {
-            background: var(--panel);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-        }
-
-        body.theme-light {
-            --bg: #ffffff;
-            --text: #0f172a;
-            --card: rgba(255, 255, 255, 0.9);
-            --panel: rgba(255, 255, 255, 0.9);
-            --border: rgba(15, 23, 42, 0.08);
-            --nav: rgba(255, 255, 255, 0.95);
-            /* Light Theme Brand Colors: switch to turquoise and slightly deeper coral */
-            /* Light mode: swap order (coral then cyan) */
-            --color-primary: #f8766d;
-            --color-secondary: #00bfc4;
-            --color-primary-strong: #f8766d;
-            --color-secondary-strong: #00bfc4;
-        }
-
-        body.theme-light nav {
-            background-color: var(--nav) !important;
-            color: var(--text);
-            border-color: var(--border);
-        }
-
-        body.theme-light #projects {
-            background-color: #ffffff;
-        }
-
-        body.theme-light .glass-panel {
-            background: var(--panel);
-            border-color: var(--border);
-        }
-
-        body.theme-light .text-slate-300 {
-            color: #1f2937 !important;
-        }
-
-        body.theme-light .text-slate-400 {
-            color: #374151 !important;
-        }
-
-        body.theme-light .text-slate-200 {
-            color: #111827 !important;
-        }
-
-        /* Project cards in light mode */
-        body.theme-light #projects h3 {
-            color: #0f172a !important;
-        }
-
-        .lang-switch {
-            background: var(--panel);
-            border-color: var(--border);
-        }
-
-        .lang-btn {
-            background: var(--panel);
-            border: 1px solid var(--border);
-        }
-
-        .theme-btn {
-            color: var(--text);
-        }
-
-        .btn-hero {
-            background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary) 25%, var(--color-secondary) 75%, var(--color-secondary) 100%);
-            color: #0f172a !important;
-        }
-
-        /* Ensure same gradient in light mode */
-        body.theme-light .btn-hero {
-            background: linear-gradient(120deg, var(--color-primary-strong) 0%, var(--color-primary-strong) 25%, var(--color-secondary-strong) 75%, var(--color-secondary-strong) 100%);
-            color: #ffffff !important;
-        }
-
-        body.theme-light .lang-switch {
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        body.theme-light .lang-btn {
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        body.theme-light .theme-btn {
-            color: #0f172a;
-        }
-
-        /* Nav menu flyout */
-        .nav-menu-panel {
-            background: var(--panel);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        body.theme-light .nav-menu-panel {
-            background: transparent;
-            color: #0f172a;
-            border-color: transparent;
-            box-shadow: none;
-        }
-
-        /* Buttons contrast in light mode */
-        body.theme-light .btn-outline {
-            color: #0f172a !important;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-color: var(--color-primary);
-        }
-
-        body.theme-light .btn-outline i {
-            color: #0f172a;
-        }
-
-        /* LinkedIn brand button */
-        .btn-linkedin {
-            color: #ffffff !important;
-            border-color: var(--color-primary) !important;
-        }
-
-        .btn-linkedin i {
-            color: #ffffff !important;
-        }
-
-        body.theme-light .btn-linkedin {
-            color: #0a66c2 !important;
-            border-color: var(--color-primary) !important;
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        body.theme-light .btn-linkedin i {
-            color: #0a66c2 !important;
-        }
-
-        /* Improve contrast of hero gradient text in light mode */
-        body.theme-light .gradient-text {
-            background: linear-gradient(120deg, var(--color-primary-strong) 0%, var(--color-primary-strong) 40%, var(--color-secondary-strong) 50%, var(--color-secondary-strong) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .gradient-text {
-            background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary) 30%, var(--color-secondary) 40%, var(--color-secondary) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        #hero-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.55;
-            pointer-events: none;
-        }
-
-        /* Darker teal/coral accents in light mode */
-        .text-brand-500 {
-            color: var(--color-primary) !important;
-        }
-
-        .text-brand-secondary {
-            color: var(--color-secondary) !important;
-        }
-
-        .bg-brand-600 {
-            background-color: var(--color-primary) !important;
-            border-color: var(--color-primary) !important;
-        }
-
-        .border-brand-600 {
-            border-color: var(--color-primary) !important;
-        }
-
-        /* Reusable Project Button */
-        .btn-project {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            line-height: 1rem;
-            transition: all 0.3s ease;
-            border: 1px solid var(--color-secondary);
-            color: #ffffff;
-            background: var(--color-secondary);
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-project:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .btn-project:focus-visible {
-            outline: 2px solid var(--color-secondary);
-            outline-offset: 2px;
-        }
-
-        /* Light mode adjustments for project button */
-        body.theme-light .btn-project {
-            background: var(--color-secondary-strong);
-            border-color: var(--color-secondary-strong);
-            color: #ffffff;
-        }
-
-        /* Card description text */
-        .card-desc {
-            color: #cbd5e1;
-        }
-
-        body.theme-light .card-desc {
-            color: #1f2937;
-        }
+        /* Styles moved to assets/css/theme.css */
     </style>
 </head>
 
@@ -315,8 +72,8 @@
                 <div class="flex items-center relative group">
                     <span title="Pedro C. · Data Science & Stats"
                         class="text-xl font-bold font-mono tracking-tighter hover:text-brand-300 transition-colors">
-                        &lt;PedroC/<span class="text-brand-500">DS</span><span class="text-brand-secondary">&amp;</span><span
-                            class="text-brand-500">S</span>&gt;
+                        &lt;PedroC/<span class="text-brand-500">DS</span><span
+                            class="text-brand-secondary">&amp;</span><span class="text-brand-500">S</span>&gt;
                     </span>
                     <div
                         class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-3 w-14 sm:w-20 bg-slate-900/90 border border-slate-700 shadow-xl rounded-xl p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -517,7 +274,7 @@
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
                             <a href="projects/anuario-movilidad.html"
                                 class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
-                                <img src="assets/img/Bogota_trafic_Accidents.png" alt="Bogota Road Safety preview"
+                                <img src="assets/img/Bogota_trafic_Accidents.webp" alt="Bogota Road Safety preview"
                                     class="w-full h-full object-cover">
                             </a>
                             <div class="p-5 space-y-3">
@@ -549,7 +306,7 @@
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
                             <a href="projects/cluster-carac.html"
                                 class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
-                                <img src="assets/img/ClusterCarac_IA001.png" alt="ClusterCarac preview"
+                                <img src="assets/img/ClusterCarac_IA001.webp" alt="ClusterCarac preview"
                                     class="w-full h-full object-cover">
                             </a>
                             <div class="p-5 space-y-3">
@@ -581,7 +338,7 @@
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
                             <a href="projects/factoclass.html"
                                 class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
-                                <img src="assets/img/FactoClass_template.png" alt="FactoClass preview"
+                                <img src="assets/img/FactoClass_template.webp" alt="FactoClass preview"
                                     class="w-full h-full object-cover">
                             </a>
                             <div class="p-5 space-y-3">
