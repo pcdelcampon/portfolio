@@ -216,8 +216,10 @@ function initThemeToggle() {
         }
     };
 
-    // Always start in dark mode
-    setTheme('dark');
+    // Restore theme preference; default to dark if none saved or no preference detected
+    const saved = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    setTheme(saved ? saved : (prefersLight ? 'light' : 'dark'));
 
     toggle.addEventListener('click', () => {
         const isLight = document.body.classList.contains('theme-light');

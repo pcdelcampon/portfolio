@@ -44,154 +44,9 @@
             }
         }
     </script>
-    <style>
-        :root {
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --panel: rgba(30, 41, 59, 0.9);
-            --border: rgba(255, 255, 255, 0.08);
-            --nav: rgba(15, 23, 42, 0.95);
-            /* Brand palette (dark mode) */
-            --color-primary: #00bfc4;
-            --color-secondary: #f8766d;
-            --color-primary-strong: #00bfc4;
-            --color-secondary-strong: #f8766d;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-        }
-
-        .glass-panel {
-            background: var(--panel);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-        }
-
-        .nav-surface {
-            background-color: var(--nav);
-            border-color: var(--border);
-            color: var(--text);
-        }
-
-        body.theme-light {
-            --bg: #ffffff;
-            --text: #0f172a;
-            --panel: rgba(255, 255, 255, 0.9);
-            --border: rgba(15, 23, 42, 0.08);
-            --nav: rgba(255, 255, 255, 0.95);
-            /* Light mode: swap order (coral then cyan) */
-            --color-primary: #f8766d;
-            --color-secondary: #00bfc4;
-            --color-primary-strong: #f8766d;
-            --color-secondary-strong: #00bfc4;
-        }
-
-        body.theme-light .glass-panel {
-            background: var(--panel);
-            border-color: var(--border);
-        }
-
-        body.theme-light .nav-surface {
-            background-color: var(--nav);
-            border-color: var(--border);
-            color: var(--text);
-        }
-
-        body.theme-light .text-slate-300 {
-            color: #1f2937 !important;
-        }
-
-        body.theme-light .text-slate-400 {
-            color: #374151 !important;
-        }
-
-        body.theme-light .text-slate-200 {
-            color: #111827 !important;
-        }
-
-        .lang-switch {
-            background: var(--panel);
-            border-color: var(--border);
-        }
-
-        .lang-btn {
-            background: var(--panel);
-            border: 1px solid var(--border);
-        }
-
-        .theme-btn {
-            color: var(--text);
-        }
-
-        body.theme-light .lang-switch {
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        body.theme-light .lang-btn {
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        body.theme-light .theme-btn {
-            color: #0f172a;
-        }
-
-        body.theme-light .text-white {
-            color: #0f172a !important;
-        }
-
-        /* Darker teal/coral accents in light mode */
-        body.theme-light .text-brand-500 {
-            color: #00949a !important;
-        }
-
-        body.theme-light .bg-brand-600 {
-            background-color: #00949a !important;
-        }
-
-        body.theme-light .border-brand-600 {
-            border-color: #00949a !important;
-        }
-
-        .body-quote {
-            color: #e2e8f0;
-        }
-
-        body.theme-light .body-quote {
-            color: #0f172a;
-        }
-
-        /* Brand helpers */
-        .text-brand-500 {
-            color: var(--color-primary) !important;
-        }
-
-        .text-brand-secondary {
-            color: var(--color-secondary) !important;
-            font-weight: 700;
-        }
-
-        /* Tag pills */
-        .tag-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--color-secondary);
-            color: #ffffff;
-        }
-
-        body.theme-light .tag-badge {
-            background: var(--color-secondary-strong);
-            color: #ffffff;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/project-layout.css">
 </head>
 
 <body class="antialiased selection:bg-brand-500 selection:text-white">
@@ -224,14 +79,14 @@
 
     <!-- Content Container -->
     <main class="pt-24 pb-16 min-h-screen px-4">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="project-container grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div class="space-y-6">
-                <div class="text-sm font-mono text-brand-secondary">projects/cluster-carac</div>
+                <div class="project-path text-sm font-mono text-brand-secondary">projects/cluster-carac</div>
 
                 <div data-lang="en" class="space-y-3">
-                    <h1 class="text-3xl md:text-4xl font-bold text-white">Uncover the unique profile of every data
+                    <h1 class="project-title text-3xl md:text-4xl font-bold">Uncover the unique profile of every data
                         segment</h1>
-                    <p class="text-lg text-slate-300 leading-relaxed">
+                    <p class="project-desc text-lg leading-relaxed">
                         <a href="https://github.com/pcdelcampon/ClusterCarac" class="text-brand-300 hover:text-brand-200 underline decoration-dotted"
                             target="_blank" rel="noreferrer">ClusterCarac</a> is an R package that helps you understand what makes each group in your data unique.
                         Whether your groups come from clustering (k-means, hierarchical, etc.) or from predefined categories
@@ -241,9 +96,9 @@
                 </div>
 
                 <div data-lang="es" class="space-y-3 hidden">
-                    <h1 class="text-3xl md:text-4xl font-bold text-white">Descubre el perfil único de cada segmento de
+                    <h1 class="project-title text-3xl md:text-4xl font-bold">Descubre el perfil único de cada segmento de
                         datos</h1>
-                    <p class="text-lg text-slate-300 leading-relaxed">
+                    <p class="project-desc text-lg leading-relaxed">
                         <a href="https://github.com/pcdelcampon/ClusterCarac" class="text-brand-300 hover:text-brand-200 underline decoration-dotted"
                             target="_blank" rel="noreferrer">ClusterCarac</a> es un paquete de R que te ayuda a entender qué hace único a cada grupo en tus datos.
                         Ya sea que provengan de clustering (k-means, jerárquico, etc.) o de categorías predefinidas como
@@ -251,7 +106,7 @@
                     </p>
                 </div>
 
-                <div data-lang="en" class="flex flex-wrap gap-2 text-xs font-mono text-brand-100">
+                <div data-lang="en" class="project-tags flex flex-wrap gap-2 text-xs font-mono text-brand-100">
                     <span class="tag-badge">R</span>
                     <span class="tag-badge">Characterization</span>
                     <span class="tag-badge">EDA</span>

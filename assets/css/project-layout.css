@@ -1,0 +1,48 @@
+/* Shared layout for project detail pages */
+.project-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.project-path {
+    letter-spacing: 0.02em;
+    font-weight: 700;
+}
+
+.project-title {
+    color: var(--text);
+}
+
+.project-desc {
+    color: rgba(248, 250, 252, 0.85);
+}
+
+body.theme-light .project-desc {
+    color: #1f2937;
+}
+
+.project-tags {
+    gap: 0.5rem;
+}
+
+.project-article h2,
+.project-article h3 {
+    color: var(--text);
+}
+
+.project-article p,
+.project-article li {
+    color: rgba(248, 250, 252, 0.85);
+}
+
+body.theme-light .project-article p,
+body.theme-light .project-article li {
+    color: #1f2937;
+}
+
+.project-figure {
+    border: 1px solid var(--border);
+    background: var(--panel);
+}

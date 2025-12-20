@@ -26,6 +26,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
 
     <!-- Math & Viz Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -293,6 +294,15 @@
             border-color: var(--color-secondary-strong);
             color: #ffffff;
         }
+
+        /* Card description text */
+        .card-desc {
+            color: #cbd5e1;
+        }
+
+        body.theme-light .card-desc {
+            color: #1f2937;
+        }
     </style>
 </head>
 
@@ -503,7 +513,7 @@
                     <div class="flex gap-6 min-w-full">
 
                         <!-- Project Card 1: Anuario -->
-                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
+                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden card
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
                             <a href="projects/anuario-movilidad.html"
                                 class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
@@ -515,11 +525,11 @@
                                     <h3 class="text-lg font-bold text-white" data-i18n="proj_2_title">Data Science &
                                         Viz: Bogotá Road Casualty Yearbook (2017–2022)</h3>
                                 </div>
-                                <p class="text-slate-800 md:text-slate-300 text-sm" data-i18n="proj_2_desc">
+                                <p class="card-desc text-sm" data-i18n="proj_2_desc">
                                     Designed indicators and ggplot2 visuals for Bogotá’s 2017–2022 road casualty
                                     yearbooks, enabling Vision Zero actions.
                                 </p>
-                                <div class="flex flex-wrap gap-2 text-xs font-mono text-purple-200">
+                                <div class="card-tags flex flex-wrap gap-2 text-xs font-mono text-white">
                                     <span class="bg-purple-900/50 px-2 py-1 rounded">Road Safety</span>
                                     <span class="bg-purple-900/50 px-2 py-1 rounded">Data Analysis</span>
                                     <span class="bg-purple-900/50 px-2 py-1 rounded">Public Health</span>
@@ -535,7 +545,7 @@
                         </div>
 
                         <!-- Project Card 2: ClusterCarac -->
-                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
+                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden card
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
                             <a href="projects/cluster-carac.html"
                                 class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
@@ -551,7 +561,7 @@
                                     R package that surfaces what defines each cluster or category; retro-inspired
                                     characterization preview.
                                 </p>
-                                <div class="flex flex-wrap gap-2 text-xs font-mono text-brand-200">
+                                <div class="card-tags flex flex-wrap gap-2 text-xs font-mono text-white">
                                     <span class="bg-brand-900/50 px-2 py-1 rounded">Social studies</span>
                                     <span class="bg-brand-900/50 px-2 py-1 rounded">Market research</span>
                                     <span class="bg-brand-900/50 px-2 py-1 rounded">R</span>
@@ -567,7 +577,7 @@
                         </div>
 
                         <!-- Project Card 3: FactoClass -->
-                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden
+                        <div class="w-[320px] sm:w-[360px] glass-panel rounded-2xl overflow-hidden card
                           hover:-translate-y-2 transition duration-300 flex-shrink-0">
                             <a href="projects/factoclass.html"
                                 class="h-44 bg-slate-800 flex items-center justify-center overflow-hidden block">
@@ -584,7 +594,7 @@
                                     Lebart,
                                     guided by Campo Elías Pardo.
                                 </p>
-                                <div class="flex flex-wrap gap-2 text-xs font-mono text-emerald-100">
+                                <div class="card-tags flex flex-wrap gap-2 text-xs font-mono text-white">
                                     <span class="bg-emerald-900/60 px-2 py-1 rounded">Statistics</span>
                                     <span class="bg-emerald-900/60 px-2 py-1 rounded">DataScience</span>
                                     <span class="bg-emerald-900/60 px-2 py-1 rounded">Multivariate Analysis</span>
