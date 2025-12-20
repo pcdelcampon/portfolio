@@ -218,8 +218,8 @@ function initThemeToggle() {
 
     // Restore theme preference; default to dark if none saved or no preference detected
     const saved = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    setTheme(saved ? saved : (prefersLight ? 'light' : 'dark'));
+    // Default to dark when no preference has been stored; otherwise respect saved
+    setTheme(saved ? saved : 'dark');
 
     toggle.addEventListener('click', () => {
         const isLight = document.body.classList.contains('theme-light');
