@@ -18,6 +18,59 @@ Static, bilingual (ES/EN) portfolio for Data Science/Statistics. Pure HTML + Tai
 - `assets/img/`: portfolio images (e.g., `ClusterCarac_IA001.png`) and avatars.
 - `assets/css/`: empty by default if you want local styles instead of CDN-only.
 
+## Architecture Overview
+
+```mermaid
+graph TD
+    %% Nodes
+    User((Usuario))
+    Index[("index.html\n(Landing Page)")]
+    
+    subgraph Assets [Recursos Locales]
+        CSS["assets/css/\ntheme.css"]
+        JS_Main["assets/js/\nmain.js\n(Lógica & Animación)"]
+        JS_i18n["assets/js/\ni18n.js\n(Traducciones)"]
+    end
+    
+    subgraph External [Dependencias CDN]
+        TW[Tailwind CSS]
+        FA[FontAwesome Icons]
+        GFonts[Google Fonts]
+    end
+
+    subgraph Portfolio [Páginas de Proyecto]
+        P1[anuario-movilidad.html]
+        P2[cluster-carac.html]
+        P3[factoclass.html]
+        P_CSS["assets/css/\nproject-layout.css"]
+    end
+
+    %% Connections
+    User -->|Visita| Index
+    
+    Index -.->|Carga| CSS
+    Index -.->|Carga| JS_Main
+    Index -.->|Carga| JS_i18n
+    Index -.->|Carga| TW
+    Index -.->|Carga| FA & GFonts
+    
+    JS_Main -->|Controla| Index
+    JS_i18n -->|Traduce| Index
+    
+    Index -->|Navega a| P1
+    Index -->|Navega a| P2
+    Index -->|Navega a| P3
+    
+    P1 -.->|Usa| P_CSS
+    P2 -.->|Usa| P_CSS
+    P3 -.->|Usa| P_CSS
+    P1 & P2 & P3 -.->|Usa| CSS
+    
+    style Index fill:#00bfc4,stroke:#fff,stroke-width:2px,color:#fff
+    style User fill:#f8766d,stroke:#fff,stroke-width:2px,color:#fff
+```
+
+
 ## Features
 - Hero canvas with particle/line animation and mouse interaction.
 - ES/EN toggle with instant text swap and saved preference.

@@ -99,14 +99,28 @@ function initHeroAnimation() {
         particles.push(new Particle());
     }
 
+    // Colors
+    const darkColor = 'rgba(0, 191, 196, 0.5)'; // Teal
+    const lightColor = 'rgba(248, 118, 109, 0.5)'; // Coral
+
     // Animation Loop
     function animate() {
         if (!running) return;
         ctx.clearRect(0, 0, width, height);
 
+        const isLight = document.body.classList.contains('theme-light');
+        const particleColor = isLight ? lightColor : darkColor;
+        const lineColorStr = isLight ? '248, 118, 109' : '0, 191, 196';
+
+        ctx.fillStyle = particleColor;
+
         for (let i = 0; i < particles.length; i++) {
             particles[i].update();
-            particles[i].draw();
+
+            // Draw function inlined/optimized to share state
+            ctx.beginPath();
+            ctx.arc(particles[i].x, particles[i].y, particles[i].size, 0, Math.PI * 2);
+            ctx.fill();
 
             // Draw connections
             for (let j = i; j < particles.length; j++) {
@@ -117,9 +131,9 @@ function initHeroAnimation() {
                 if (distance < connectionDistance) {
                     ctx.beginPath();
                     const baseAlpha = 1 - distance / connectionDistance;
-                    const alpha = (document.body.classList.contains('theme-light')) ? baseAlpha * 0.4 : baseAlpha;
-                    const lineColor = document.body.classList.contains('theme-light') ? '248, 118, 109' : '0, 191, 196';
-                    ctx.strokeStyle = `rgba(${lineColor}, ${alpha})`;
+                    const alpha = isLight ? baseAlpha * 0.4 : baseAlpha;
+
+                    ctx.strokeStyle = `rgba(${lineColorStr}, ${alpha})`;
                     ctx.lineWidth = 1;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
