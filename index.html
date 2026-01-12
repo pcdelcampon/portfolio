@@ -161,13 +161,16 @@
                 </div>
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-10 flex justify-center">
-            <i class="fa-solid fa-chevron-down text-slate-500 text-xl"></i>
+        <div class="absolute inset-x-0 bottom-10 flex justify-center z-20">
+            <a href="#about" aria-label="Scroll down"
+                class="animate-bounce p-2 cursor-pointer text-slate-500 hover:text-brand-500 transition-colors">
+                <i class="fa-solid fa-chevron-down text-xl"></i>
+            </a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20">
+    <section id="about" class="py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <div>
@@ -260,9 +263,15 @@
                 </div>
             </div>
         </div>
+        <div class="absolute inset-x-0 bottom-5 flex justify-center z-20">
+            <a href="#projects" aria-label="Scroll to projects"
+                class="animate-bounce p-2 cursor-pointer text-slate-500 hover:text-brand-500 transition-colors">
+                <i class="fa-solid fa-chevron-down text-xl"></i>
+            </a>
+        </div>
     </section>
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-slate-900/50">
+    <section id="projects" class="py-20 bg-slate-900/50 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
                 <span class="text-brand-500 font-mono text-2xl">02.</span> <span
@@ -371,6 +380,12 @@
                     </div>
                 </div>
             </div>
+            <div class="absolute inset-x-0 bottom-5 flex justify-center z-20">
+                <a href="#contact" aria-label="Scroll to contact"
+                    class="animate-bounce p-2 cursor-pointer text-slate-500 hover:text-brand-500 transition-colors">
+                    <i class="fa-solid fa-chevron-down text-xl"></i>
+                </a>
+            </div>
     </section>
 
     <!-- Viz Lab Section (commented out until visualizations are ready)
@@ -385,9 +400,9 @@
             <div
                 class="relative w-full h-80 glass-panel rounded-2xl border border-dashed border-slate-600 flex items-center justify-center">
                 <p class="text-slate-500 font-mono animate-pulse">&lt; Interactive_Simulation_Placeholder /&gt;</p>
-                <!-- D3 Animation to be added here -->
-    </div>
-    </div>
+                
+            </div>
+        </div>
     </section>
     -->
 
