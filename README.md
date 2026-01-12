@@ -75,7 +75,8 @@ graph TD
 - Hero canvas with particle/line animation and mouse interaction.
 - ES/EN toggle with instant text swap and saved preference.
 - Responsive Tailwind layout with scroll-in animations.
-- Dedicated Viz Lab block for D3 experiments.
+- **Optimized Navigation**: Smooth scrolling with directional arrows for better UX.
+- Dedicated Viz Lab block for D3 experiments (currently hidden/placeholder).
 - Reusable case-study template page.
 
 ## Customize

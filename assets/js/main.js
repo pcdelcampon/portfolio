@@ -197,10 +197,9 @@ function initScrollAnimations() {
    3. D3 Skill Chart (Placeholder)
    ========================================= */
 function initSkillChart() {
+    // Placeholder for D3 skills chart -> future improvement
     const container = document.getElementById('skill-chart');
     if (!container) return;
-
-    // If the visual container is removed, skip rendering
     if (container.dataset.disabled === "true") return;
 }
 
