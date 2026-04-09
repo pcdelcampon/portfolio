@@ -10,81 +10,89 @@ Static, bilingual (ES/EN) portfolio for Data Science/Statistics. Pure HTML + Tai
 - To publish, drop the files on any static host (GitHub Pages, Netlify, Vercel, S3, etc.).
 
 ## Project structure
-- `index.html`: landing page (hero, about, portfolio, viz lab, contact) with Tailwind config in the head.
-- `project_template.html`: clone for each case study; keep the layout and swap the copy/assets.
-- `assets/js/main.js`: hero canvas network animation, IntersectionObserver scroll reveals, mobile nav toggle, placeholder for a D3 skill chart.
-- `assets/js/i18n.js`: language dictionaries and flag toggle logic; persists preference in `localStorage`.
-- `assets/js/charts/`: reserved for extra visualizations.
-- `assets/img/`: portfolio images (e.g., `ClusterCarac_IA001.png`) and avatars.
-- `assets/css/`: empty by default if you want local styles instead of CDN-only.
+
+- `index.html`: Main landing page (hero, about, portfolio, contact) with Tailwind config in the head.
+- `project_template.html`: Template to clone for new case studies; maintains layout consistency.
+- `projects/`: Directory containing individual project pages.
+    - `anuario-movilidad.html`: Bogotá Road Casualty Yearbook.
+    - `cluster-carac.html`: ClusterCarac package.
+    - `factoclass.html`: FactoClass package.
+- `assets/`:
+    - `css/`:
+        - `theme.css`: Global styles and overrides.
+        - `project-layout.css`: Specific styles for project internal pages.
+    - `js/`:
+        - `main.js`: Core logic for animations (canvas), scroll observers, and navigation.
+        - `i18n.js`: Internationalization dictionaries (ES/EN) and language toggle logic.
+        - `charts/`: Reserved for additional visualization scripts.
+    - `img/`: Portfolio images and assets.
 
 ## Architecture Overview
 
 ```mermaid
 graph TD
     %% Nodes
-    User((Usuario))
+    User((User))
     Index[("index.html\n(Landing Page)")]
     
-    subgraph Assets [Recursos Locales]
-        CSS["assets/css/\ntheme.css"]
-        JS_Main["assets/js/\nmain.js\n(Lógica & Animación)"]
-        JS_i18n["assets/js/\ni18n.js\n(Traducciones)"]
+    subgraph Assets [Local Assets]
+        CSS_Theme["assets/css/\ntheme.css"]
+        CSS_Proj["assets/css/\nproject-layout.css"]
+        JS_Main["assets/js/\nmain.js\n(Logic & Animation)"]
+        JS_i18n["assets/js/\ni18n.js\n(Translations)"]
     end
     
-    subgraph External [Dependencias CDN]
+    subgraph External [CDN Dependencies]
         TW[Tailwind CSS]
         FA[FontAwesome Icons]
         GFonts[Google Fonts]
     end
 
-    subgraph Portfolio [Páginas de Proyecto]
+    subgraph Portfolio [projects/]
         P1[anuario-movilidad.html]
         P2[cluster-carac.html]
         P3[factoclass.html]
-        P_CSS["assets/css/\nproject-layout.css"]
     end
 
     %% Connections
-    User -->|Visita| Index
+    User -->|Visits| Index
     
-    Index -.->|Carga| CSS
-    Index -.->|Carga| JS_Main
-    Index -.->|Carga| JS_i18n
-    Index -.->|Carga| TW
-    Index -.->|Carga| FA & GFonts
+    Index -.->|Loads| CSS_Theme
+    Index -.->|Loads| JS_Main
+    Index -.->|Loads| JS_i18n
+    Index -.->|Loads| TW
+    Index -.->|Loads| FA & GFonts
     
-    JS_Main -->|Controla| Index
-    JS_i18n -->|Traduce| Index
+    JS_Main -->|Controls| Index
+    JS_i18n -->|Translates| Index
     
-    Index -->|Navega a| P1
-    Index -->|Navega a| P2
-    Index -->|Navega a| P3
+    Index -->|Navigates to| P1
+    Index -->|Navigates to| P2
+    Index -->|Navigates to| P3
     
-    P1 -.->|Usa| P_CSS
-    P2 -.->|Usa| P_CSS
-    P3 -.->|Usa| P_CSS
-    P1 & P2 & P3 -.->|Usa| CSS
+    P1 & P2 & P3 -.->|Use| CSS_Proj
+    P1 & P2 & P3 -.->|Use| CSS_Theme
     
     style Index fill:#00bfc4,stroke:#fff,stroke-width:2px,color:#fff
     style User fill:#f8766d,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-
 ## Features
 - Hero canvas with particle/line animation and mouse interaction.
-- ES/EN toggle with instant text swap and saved preference.
-- Responsive Tailwind layout with scroll-in animations.
+- ES/EN toggle with instant text swap and saved preference (localStorage).
+- Responsive layout using Tailwind CSS with scroll-in animations.
 - **Optimized Navigation**: Smooth scrolling with directional arrows for better UX.
-- Dedicated Viz Lab block for D3 experiments (currently hidden/placeholder).
-- Reusable case-study template page.
+- Reusable case-study template system.
 
-## Customize
-- Theme: edit the `tailwind.config` script block inside the HTML head to adjust colors/typography.
-- Hero animation: change `particleCount`, `connectionDistance`, and `mouseDistance` in `assets/js/main.js`.
-- Skills chart: fill in `initSkillChart` in `assets/js/main.js` or add scripts under `assets/js/charts/`.
-- Copy: update dictionaries in `assets/js/i18n.js` for both languages; add new keys as needed.
-- Projects: duplicate `project_template.html`, update content, and link it from `index.html`.
+## Customization
+- **Theme**: Edit `tailwind.config` in `index.html` head to adjust colors/fonts, or `assets/css/theme.css` for custom CSS.
+- **Hero Animation**: Adjust `particleCount`, `connectionDistance`, and `mouseDistance` in `assets/js/main.js`.
+- **Content**: Update text dictionaries in `assets/js/i18n.js` for bilingual support.
+- **New Projects**: 
+    1. Duplicate `project_template.html`.
+    2. Renaissance and move to `projects/` folder.
+    3. Ensure asset links in the new file point to `../assets/`.
+    4. Link the new page from the portfolio section in `index.html`.
 
 ## Notes
 - Fully static; no build step or dependencies required.
